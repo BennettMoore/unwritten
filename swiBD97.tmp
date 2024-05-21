@@ -18,8 +18,11 @@ collision_mask = 2
 script = ExtResource("1_xsg3n")
 crit_effect = ExtResource("2_2kdre")
 damage = 10
+offset = null
+knockback = null
 attack_delay = 0.3
 damage_type = 3
+is_crit = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1

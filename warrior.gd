@@ -1,12 +1,12 @@
 extends Player
 
 
-# Sets the base stats and data for this character type
+## Sets the base stats and data for this character type
 func setStats():
-	armor = 20.0
-	melee_damage = 20.0
-	magic_damage = 5.0
-	ranged_damage = 5.0
-	speed = 300
-	max_hp = 150
-	hp = 150
+	PlayerData.armor = 20.0
+	PlayerData.melee_damage = 20.0
+	PlayerData.magic_damage = 5.0
+	PlayerData.ranged_damage = 5.0
+	PlayerData.speed = 300
+	PlayerData.max_hp = 150
+	PlayerData.hp = 150

@@ -1,12 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://cecmw82usolt"]
+[gd_scene load_steps=10 format=3 uid="uid://b78vq1t5lsfap"]
 
 [ext_resource type="Texture2D" uid="uid://cwghy1dn8jyi3" path="res://art/enemyFlyingAlt_1.png" id="1_fij27"]
-[ext_resource type="Script" path="res://mob.gd" id="1_hm788"]
 [ext_resource type="Texture2D" uid="uid://cbqlqflc2yxli" path="res://art/enemyFlyingAlt_2.png" id="2_qps5w"]
 [ext_resource type="Texture2D" uid="uid://cugh1j5p71ag7" path="res://art/enemySwimming_1.png" id="3_d4kye"]
 [ext_resource type="Texture2D" uid="uid://cws3ihdf7t0nt" path="res://art/enemySwimming_2.png" id="4_7oe16"]
 [ext_resource type="Texture2D" uid="uid://da6tx2kyjm2io" path="res://art/enemyWalking_1.png" id="5_s8ykh"]
 [ext_resource type="Texture2D" uid="uid://dr5oelhc8lwqr" path="res://art/enemyWalking_2.png" id="6_ixgym"]
+
+[sub_resource type="GDScript" id="GDScript_slllm"]
+script/source = "extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
+	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qj4qv"]
 animations = [{
@@ -51,7 +69,7 @@ height = 100.0
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 2
 gravity_scale = 0.0
-script = ExtResource("1_hm788")
+script = SubResource("GDScript_slllm")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

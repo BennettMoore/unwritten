@@ -1,35 +1,39 @@
 extends Entity
 
 class_name Player
+## An abstract class for all player characters
+##
+## Handles all the boilerplate found across all character types
+## @author: Bennett Moore 2024
 
-@export var melee_damage = 10.0
-@export var magic_damage = 10.0
-@export var ranged_damage = 10.0
-@export_range(0,2,0.01) var crit_chance = 0.05
-@export_range(0,10,0.1) var crit_damage = 2.0
+@export var melee_damage = 10.0 ## The "melee damage" stat of the player
+@export var magic_damage = 10.0 ## The "magic damage" stat of the player
+@export var ranged_damage = 10.0 ## The "ranged damage" stat of the player
+@export_range(0,2,0.01) var crit_chance = 0.05 ## The percent chance of a critical hit occuring
+@export_range(0,10,0.1) var crit_damage = 2.0 ## The damage multiplier used when getting a crit
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
 
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = %HealthBar
 	is_enemy = false
 	setStats()
 	hide()
 
-# Sets the base stats and data for each character
+## Sets the base stats and data for each character
 func setStats():
-	armor = 10.0
-	melee_damage = 10.0
-	magic_damage = 10.0
-	ranged_damage = 10.0
-	speed = 300
-	max_hp = 100
-	hp = 100
+	PlayerData.armor = armor
+	PlayerData.melee_damage = melee_damage
+	PlayerData.magic_damage = magic_damage
+	PlayerData.ranged_damage = ranged_damage
+	PlayerData.speed = speed
+	PlayerData.max_hp = max_hp
+	PlayerData.hp = hp
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func moveEntity(delta=0):
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if Input.is_action_pressed("dodge") and $DodgeTimer.is_stopped():
@@ -50,10 +54,12 @@ func moveEntity(delta=0):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	move_and_slide()
 	
+## Starts the player at a given location
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-	
+
+## Kills the player
 func die():
 	queue_free()

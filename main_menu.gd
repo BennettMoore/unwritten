@@ -1,4 +1,8 @@
 extends Menu
+## The game's main menu
+##
+## Allows player to choose their character and start a new game
+## @author: Bennett Moore 2024
 
 signal start_game(player_class)
 
@@ -6,7 +10,7 @@ var character_data = preload("res://character_data.gd")
 
 @onready var itemList = $MenuContainer/MenuSplitter/CharacterSelect/ItemList
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	var character_array:Array[CharacterData] = get_parent().get_character_data()
 	if !(character_array is Array[CharacterData]):

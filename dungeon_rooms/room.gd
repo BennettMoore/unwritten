@@ -1,18 +1,24 @@
 extends StaticBody2D
 
 class_name Room
+## Handles basic room functionality
+##
+## Stores which doors a room has, which are open, and allows the Dungeon Master to connect rooms together
+## @author: Bennett Moore 2024
 
-@export_flags("North", "East", "South", "West") var door_dirs = 0
+@export_flags("North", "East", "South", "West") var door_dirs = 0 ## Which doors the room has
 enum {NORTH=1, EAST=2, SOUTH=4, WEST=8}
 const COMPASS = {1:"North", 2:"East", 4:"South", 8:"West"}
 @onready var open_doors = door_dirs
 
+## Closes a specific door
 func close_door(door:int):
 	if open_doors&door:
 		open_doors -= door
 	else:
 		print("Error! "+COMPASS[door]+" door already closed!")
-		
+
+## Closes a random valid door, or returns 0 if no door valid
 func close_random_door():
 	# No open doors
 	if open_doors == 0:
@@ -33,10 +39,11 @@ func close_random_door():
 		open_doors = open_doors&~random_door
 		return random_door
 
+## Whether a given door exists and is open
 func has_door(door:int):
 	return open_doors&door
 
-# Returns how many doors are left
+## Returns how many doors are left
 func has_open_doors():
 	var doors_left = 0
 	if open_doors&NORTH: doors_left += 1
@@ -46,6 +53,7 @@ func has_open_doors():
 	
 	return doors_left
 
+## The global coordinates of a given door
 func get_door_pos(door:int):
 	if door_dirs&door:
 		match(door):
@@ -61,6 +69,7 @@ func get_door_pos(door:int):
 	print("Error! Could not find door at direction: "+str(door)+"!")
 	return null
 
+## Moves the room to connect its door to a specific position
 func connect_to(door:int, pos:Vector2):
 	if !(door&door_dirs):
 		print("Error! "+COMPASS[door]+" door invalid!")

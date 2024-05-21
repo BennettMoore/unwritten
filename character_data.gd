@@ -1,10 +1,14 @@
 extends Resource
 
 class_name CharacterData
+## Resource that contains all character data
+##
+## @author: Bennett Moore 2024
 
-@export var character_scene: PackedScene
-@export var select_icon: CompressedTexture2D
-@export var select_name: String
+
+@export var character_scene: PackedScene ## The character's scene
+@export var select_icon: CompressedTexture2D ## The icon that should be displayed on the main menu
+@export var select_name: String ## The name of the character
 
 func _init(_scene=null, _icon=null, _name="N/A"):
 	character_scene = _scene if _scene is PackedScene else load("res://player.tscn")

@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
 class_name Entity
+## Parents of all game entities
+##
+## Handles boilerplate data and logic found in all living things
+## @author: Bennett Moore 2024
 
-@export_range(0,1000) var speed = 300 # How fast the entity will move (pixels/sec).
-@export_range(10,1000) var max_hp = 100 # The maximum health of the entity
-@export var hp = max_hp # The current health of the entity
-@export_range(0,1000) var armor = 0 # The damage reduction value of the entity
+@export_range(0,1000) var speed = 300 ## How fast the entity will move (pixels/sec).
+@export_range(10,1000) var max_hp = 100 ## The maximum health of the entity
+@export var hp = max_hp ## The current health of the entity
+@export_range(0,1000) var armor = 0 ## The damage reduction value of the entity
+@export_range(0,5,0.01) var dodge_timer = 0.35 ## How long the entity dodges for in seconds
+@export_range(0,5,0.01) var hurt_timer = 0.2 ## How long the entity's I-frames are in seconds
+@export var is_enemy = true ## Whether or not the player and their allies can damage this entity
 @onready var healthBar = null
 @onready var dodge_vector = Vector2.ZERO
 @onready var knockback_vector = Vector2.ZERO
-@export_range(0,5,0.01) var dodge_timer = 0.35
-@export_range(0,5,0.01) var hurt_timer = 0.2
-@export var is_enemy = true
 
 func _process(delta):
 	if not $HurtTimer.is_stopped():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfr0ij1s2qxuc"]
+[gd_scene load_steps=10 format=3 uid="uid://bfr0ij1s2qxuc"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1ec71"]
 [ext_resource type="Texture2D" uid="uid://buo0ars1oenk4" path="res://art/playerGrey_up1.png" id="2_aank2"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://c2j70sisqf8ec" path="res://art/playerGrey_walk1.png" id="4_iounk"]
 [ext_resource type="Texture2D" uid="uid://3war6x5501ii" path="res://art/playerGrey_walk2.png" id="5_hxwfn"]
 [ext_resource type="Script" path="res://AttackPivot.gd" id="6_npvco"]
-[ext_resource type="PackedScene" uid="uid://d06okroiaygym" path="res://swing_attack.tscn" id="7_74s40"]
-[ext_resource type="PackedScene" uid="uid://5klw2qr7pk5i" path="res://stab_attack.tscn" id="7_os27e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8a5pc"]
 animations = [{
@@ -67,8 +65,6 @@ debug_color = Color(0.490196, 0.435294, 1, 0.419608)
 [node name="AttackPivot" type="Node2D" parent="."]
 rotation = 1.5708
 script = ExtResource("6_npvco")
-primary_attack_scene = ExtResource("7_74s40")
-secondary_attack_scene = ExtResource("7_os27e")
 attack_delay = 0.75
 metadata/_edit_group_ = true
 

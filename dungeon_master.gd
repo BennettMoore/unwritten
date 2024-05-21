@@ -1,4 +1,8 @@
 extends Node
+## Brain that handles all level generation
+##
+## Generates rooms, connects them together, and ensures all key rooms are placed within each level
+## @author: Bennett Moore 2024
 
 var room_data = preload("res://room_data.gd")
 
@@ -6,17 +10,17 @@ enum {NORTH=1, EAST=2, SOUTH=4, WEST=8}
 const COMPASS = {1:"North", 2:"East", 4:"South", 8:"West"}
 const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 
-@export var rooms: Array[RoomData]
-@export var start_room: RoomData
-@export var end_room: RoomData
-@export var cap_rooms: Array[RoomData]
+@export var rooms: Array[RoomData] ## All possible room options
+@export var start_room: RoomData ## The starting room of the dungeon
+@export var end_room: RoomData ## The ending room of the dungeon
+@export var cap_rooms: Array[RoomData] ## One-door rooms that are used to close any open doorways
 
 @onready var north_rooms: Array[RoomData] = rooms.filter(has_north)
 @onready var east_rooms: Array[RoomData] = rooms.filter(has_east)
 @onready var south_rooms: Array[RoomData] = rooms.filter(has_south)
 @onready var west_rooms: Array[RoomData] = rooms.filter(has_west)
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	var start = start_room.room_scene.instantiate()
 	add_child(start)
@@ -33,6 +37,7 @@ func _ready():
 	
 	room_placer(start, starting_door, 2)
 
+## Recursive function which places rooms according to a modified Depth-first Search algorithm
 func room_placer(old_room:Room, old_door:int, depth_limit:int):
 	var next_room_data:RoomData
 	

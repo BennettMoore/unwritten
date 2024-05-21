@@ -1,20 +1,17 @@
 extends CanvasLayer
 
 class_name Menu
+## The abstract class for all menus
+##
+## Handles all boilerplate found across all menu types
+## @author: Bennett Moore 2024
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+## Closes the menu
 func close_menu():
 	get_tree().paused = false
 	hide()
-	
+
+## Opens the menu
 func open_menu():
 	get_tree().paused = true
 	show()

@@ -1,13 +1,17 @@
 extends Entity
+## Placeholder Enemy AI
+##
+## Patrols back and forth between two points
+## @author: Bennett Moore 2024
 
 @export var limit = 5
 @export var damage = 10
-@export var damageType = "Slashing"
+@export var damageType: Global.DAMAGE_TYPES = Global.DAMAGE_TYPES.SLASHING
 @export var endpoint: Marker2D
 @onready var animations = $AnimationPlayer
 var startPosition
 var endPosition
-var attack = AttackData.new(damage, 0, false, damageType)
+var attack = AttackData.new(damage, 0, damageType)
 
 
 func _ready():

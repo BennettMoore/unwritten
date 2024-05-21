@@ -1,22 +1,99 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwcdshtbw22yl"]
+[gd_scene load_steps=31 format=3 uid="uid://dwcdshtbw22yl"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f725f"]
-[ext_resource type="PackedScene" uid="uid://cecmw82usolt" path="res://mob.tscn" id="2_n6asn"]
+[ext_resource type="Texture2D" uid="uid://cwghy1dn8jyi3" path="res://art/enemyFlyingAlt_1.png" id="2_tdmrj"]
 [ext_resource type="PackedScene" uid="uid://c5y3f34fqo353" path="res://inventory_menu.tscn" id="3_10c67"]
 [ext_resource type="PackedScene" uid="uid://c1v6vra164hmj" path="res://warrior.tscn" id="3_bb1m7"]
+[ext_resource type="Texture2D" uid="uid://cbqlqflc2yxli" path="res://art/enemyFlyingAlt_2.png" id="3_w1yyh"]
 [ext_resource type="PackedScene" uid="uid://chhhm4fj075o4" path="res://enemy.tscn" id="3_w4utp"]
 [ext_resource type="PackedScene" uid="uid://bfr0ij1s2qxuc" path="res://player.tscn" id="3_ycym4"]
+[ext_resource type="Texture2D" uid="uid://cugh1j5p71ag7" path="res://art/enemySwimming_1.png" id="4_kpqrn"]
 [ext_resource type="PackedScene" uid="uid://fdm72b0aj846" path="res://ranger.tscn" id="4_lccdt"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="4_p8887"]
 [ext_resource type="Script" path="res://character_data.gd" id="4_qs3lx"]
+[ext_resource type="Texture2D" uid="uid://cws3ihdf7t0nt" path="res://art/enemySwimming_2.png" id="5_ua65w"]
 [ext_resource type="Texture2D" uid="uid://detcnm3k7pia3" path="res://art/sword_icon.png" id="5_wu1aa"]
 [ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="6_2uyst"]
 [ext_resource type="PackedScene" uid="uid://cu57bro14f78g" path="res://dungeon_master.tscn" id="6_3j70e"]
+[ext_resource type="Texture2D" uid="uid://da6tx2kyjm2io" path="res://art/enemyWalking_1.png" id="6_cftl6"]
 [ext_resource type="Texture2D" uid="uid://cxqierqd347gw" path="res://art/bow_icon.png" id="7_cjkgw"]
+[ext_resource type="Texture2D" uid="uid://dr5oelhc8lwqr" path="res://art/enemyWalking_2.png" id="7_s7c70"]
 [ext_resource type="PackedScene" uid="uid://dmqcrf7q1ulj7" path="res://pause_menu.tscn" id="8_xmq5q"]
 [ext_resource type="Texture2D" uid="uid://c3tks66ta01t1" path="res://art/staff_icon.png" id="9_5ngyo"]
 [ext_resource type="PackedScene" uid="uid://ddp50lp1vtj6a" path="res://main_menu.tscn" id="10_366iv"]
 [ext_resource type="Texture2D" uid="uid://dxxi2vys4lijh" path="res://art/gear_icon.png" id="10_icf2j"]
+
+[sub_resource type="GDScript" id="GDScript_slllm"]
+script/source = "extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
+	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qj4qv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tdmrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w1yyh")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kpqrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ua65w")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cftl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s7c70")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0bdn"]
+radius = 36.0
+height = 100.0
+
+[sub_resource type="PackedScene" id="PackedScene_h762p"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(0, 0, 15, 14, 2, 0, 0, 3, 0, 17, 16, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Mob", "collision_mask", "gravity_scale", "script", "metadata/_edit_group_", "RigidBody2D", "AnimatedSprite2D", "scale", "sprite_frames", "animation", "CollisionShape2D", "rotation", "shape", "VisibleOnScreenNotifier2D", "_on_body_entered", "body_entered", "_on_visible_on_screen_notifier_2d_screen_exited", "screen_exited"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 5, 0, -1, 4, 1, 0, 2, 1, 3, 2, 4, 3, 0, 0, 0, 6, 6, -1, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 10, 10, -1, 2, 11, 7, 12, 8, 0, 0, 0, 13, 13, -1, 0, 0),
+"variants": [2, 0.0, SubResource("GDScript_slllm"), true, Vector2(0.75, 0.75), SubResource("SpriteFrames_qj4qv"), &"walk", 1.5708, SubResource("CapsuleShape2D_n0bdn")],
+"version": 3
+}
 
 [sub_resource type="Resource" id="Resource_l4mnc"]
 script = ExtResource("4_qs3lx")
@@ -44,7 +121,7 @@ select_name = "Artificer"
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f725f")
-mob_scene = ExtResource("2_n6asn")
+mob_scene = SubResource("PackedScene_h762p")
 player_scenes = Array[ExtResource("4_qs3lx")]([SubResource("Resource_l4mnc"), SubResource("Resource_0qnpp"), SubResource("Resource_p0jfb"), SubResource("Resource_m3dm2")])
 
 [node name="DungeonMaster" parent="." instance=ExtResource("6_3j70e")]
