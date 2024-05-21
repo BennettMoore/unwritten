@@ -1,5 +1,10 @@
 extends Player
+## Placeholder Warrior Class
+##
+## @author: Bennett Moore 2024
 
+@export var primary_attack_scene: PackedScene = load("res://swing_attack.tscn") ## The warrior's first weapon scene
+@export var secondary_attack_scene: PackedScene = load("res://stab_attack.tscn") ## The warrior's alternate weapon scene
 
 ## Sets the base stats and data for this character type
 func setStats():
@@ -10,3 +15,5 @@ func setStats():
 	PlayerData.speed = 300
 	PlayerData.max_hp = 150
 	PlayerData.hp = 150
+	if primary_attack_scene is PackedScene: PlayerData.primary_attack_scene = primary_attack_scene
+	if secondary_attack_scene is PackedScene: PlayerData.secondary_attack_scene = secondary_attack_scene

@@ -8,4 +8,10 @@ func _ready():
 	update()
 
 func update():
-	value = PlayerData.hp
+	max_value = PlayerData.max_hp
+	if PlayerData.hp > max_value:
+		value = max_value
+		PlayerData.hp = max_value
+	else:
+		value = PlayerData.hp
+	

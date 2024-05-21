@@ -11,7 +11,16 @@ extends Area2D
 @export var attack_delay = 1.0 ## How long until the player can attack again
 @export var damage_type: Global.DAMAGE_TYPES = Global.DAMAGE_TYPES.NONE ## The damage type of the attack
 @export var is_crit = false ## Whether or not the given attack is a crit (Should *always* be false by default)
+@export var speed = 0.0 ## How fast attack should move in pixels/sec (melee attacks should have a speed of 0)
 @onready var parent: AttackPivot = get_parent()
+
+func _ready():
+	if speed != 0:
+		reparent(get_node("/root/Main"))
+
+func _physics_process(delta):
+	if speed != 0:
+		position -= transform.y * speed * delta
 
 func _on_lifetime_timeout():
 	queue_free()

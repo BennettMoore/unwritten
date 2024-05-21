@@ -6,7 +6,6 @@ extends Node
 
 var character_data = preload("res://character_data.gd")
 
-@export var mob_scene: PackedScene
 @export var player_scenes: Array[CharacterData]
 @onready var player = player_scenes[0].character_scene.instantiate()
 

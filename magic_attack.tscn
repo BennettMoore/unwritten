@@ -1,34 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://d06okroiaygym"]
+[gd_scene load_steps=5 format=3 uid="uid://cxiqdpfi2qvd7"]
 
-[ext_resource type="Script" path="res://Attack.gd" id="1_xsg3n"]
-[ext_resource type="PackedScene" uid="uid://d2b8eofr7wexu" path="res://crit_effect.tscn" id="2_2kdre"]
-[ext_resource type="Texture2D" uid="uid://bfv1p4mlcw7bj" path="res://art/swing.png" id="2_ms5xa"]
+[ext_resource type="Script" path="res://Attack.gd" id="1_ix88u"]
+[ext_resource type="PackedScene" uid="uid://d2b8eofr7wexu" path="res://crit_effect.tscn" id="2_gwco4"]
+[ext_resource type="Texture2D" uid="uid://dftfwf5pxctku" path="res://art/magic_blast.png" id="3_lnvdk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfhge"]
-radius = 15.5
-height = 69.0
+radius = 14.0
+height = 54.0
 
-[node name="Swing" type="Area2D"]
+[node name="Spell" type="Area2D"]
 z_index = 1
-position = Vector2(108, -8)
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_xsg3n")
-crit_effect = ExtResource("2_2kdre")
+script = ExtResource("1_ix88u")
+crit_effect = ExtResource("2_gwco4")
 damage = 10
+knockback = 100
 attack_delay = 0.3
-damage_type = 3
+damage_type = 8
+speed = 400.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(1.90735e-06, 1.90735e-06)
-scale = Vector2(1.33535, 1.7281)
-texture = ExtResource("2_ms5xa")
+rotation = 1.5708
+scale = Vector2(1.5, 1.943)
+texture = ExtResource("3_lnvdk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.086e-05, 3)
-rotation = 1.5708
+position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_qfhge")
 debug_color = Color(0.964706, 0, 0.501961, 0.419608)
 

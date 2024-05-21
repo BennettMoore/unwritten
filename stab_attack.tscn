@@ -11,7 +11,6 @@ height = 67.0
 [node name="Swing" type="Area2D"]
 z_index = 1
 position = Vector2(108, -8)
-rotation = 1.5708
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 2
