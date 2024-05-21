@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2b8eofr7wexu"]
+
+[ext_resource type="Script" path="res://crit_effect.gd" id="1_jk7bk"]
+
+[node name="CritEffect" type="Node2D"]
+
+[node name="CritEffectLabel" type="Label" parent="."]
+modulate = Color(0.941238, 0.796427, 0.0679927, 1)
+text = "Crit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_jk7bk")
+
+[node name="Lifetime" type="Timer" parent="CritEffectLabel"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="CritEffectLabel/Lifetime" to="CritEffectLabel" method="_on_lifetime_timeout"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06okroiaygym"]
+
+[ext_resource type="Script" path="res://Attack.gd" id="1_xsg3n"]
+[ext_resource type="Texture2D" uid="uid://bfv1p4mlcw7bj" path="res://art/swing.png" id="2_ms5xa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfhge"]
+radius = 15.5
+height = 69.0
+
+[node name="Swing" type="Area2D"]
+z_index = 1
+position = Vector2(108, -8)
+rotation = 1.5708
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_xsg3n")
+damage = 10
+attack_delay = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(1.33535, 1.7281)
+texture = ExtResource("2_ms5xa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.086e-05, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qfhge")
+debug_color = Color(0.964706, 0, 0.501961, 0.419608)
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

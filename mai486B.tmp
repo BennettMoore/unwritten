@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwcdshtbw22yl"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_f725f"]
+[ext_resource type="PackedScene" uid="uid://cecmw82usolt" path="res://mob.tscn" id="2_n6asn"]
+[ext_resource type="PackedScene" uid="uid://chhhm4fj075o4" path="res://enemy.tscn" id="3_w4utp"]
+[ext_resource type="PackedScene" uid="uid://bfr0ij1s2qxuc" path="res://player.tscn" id="3_ycym4"]
+[ext_resource type="Script" path="res://HealthBar.gd" id="4_p8887"]
+
+[sub_resource type="Curve2D" id="Curve2D_behgg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, -2, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 640, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, -2, -2)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_f725f")
+mob_scene = ExtResource("2_n6asn")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("endpoint") instance=ExtResource("3_w4utp")]
+position = Vector2(336, 192)
+endpoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Enemy"]
+position = Vector2(112, 384)
+
+[node name="Player" parent="." instance=ExtResource("3_ycym4")]
+unique_name_in_owner = true
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(568, 322)
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_behgg")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-2, -2)
+rotation = 0.0017331
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 200.0
+offset_bottom = 51.0
+script = ExtResource("4_p8887")
+
+[connection signal="hit" from="Player" to="." method="player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

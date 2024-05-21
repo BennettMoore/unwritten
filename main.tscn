@@ -1,0 +1,95 @@
+[gd_scene load_steps=22 format=3 uid="uid://dwcdshtbw22yl"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_f725f"]
+[ext_resource type="PackedScene" uid="uid://cecmw82usolt" path="res://mob.tscn" id="2_n6asn"]
+[ext_resource type="PackedScene" uid="uid://c5y3f34fqo353" path="res://inventory_menu.tscn" id="3_10c67"]
+[ext_resource type="PackedScene" uid="uid://c1v6vra164hmj" path="res://warrior.tscn" id="3_bb1m7"]
+[ext_resource type="PackedScene" uid="uid://chhhm4fj075o4" path="res://enemy.tscn" id="3_w4utp"]
+[ext_resource type="PackedScene" uid="uid://bfr0ij1s2qxuc" path="res://player.tscn" id="3_ycym4"]
+[ext_resource type="PackedScene" uid="uid://fdm72b0aj846" path="res://ranger.tscn" id="4_lccdt"]
+[ext_resource type="Script" path="res://HealthBar.gd" id="4_p8887"]
+[ext_resource type="Script" path="res://character_data.gd" id="4_qs3lx"]
+[ext_resource type="Texture2D" uid="uid://detcnm3k7pia3" path="res://art/sword_icon.png" id="5_wu1aa"]
+[ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="6_2uyst"]
+[ext_resource type="PackedScene" uid="uid://cu57bro14f78g" path="res://dungeon_master.tscn" id="6_3j70e"]
+[ext_resource type="Texture2D" uid="uid://cxqierqd347gw" path="res://art/bow_icon.png" id="7_cjkgw"]
+[ext_resource type="PackedScene" uid="uid://dmqcrf7q1ulj7" path="res://pause_menu.tscn" id="8_xmq5q"]
+[ext_resource type="Texture2D" uid="uid://c3tks66ta01t1" path="res://art/staff_icon.png" id="9_5ngyo"]
+[ext_resource type="PackedScene" uid="uid://ddp50lp1vtj6a" path="res://main_menu.tscn" id="10_366iv"]
+[ext_resource type="Texture2D" uid="uid://dxxi2vys4lijh" path="res://art/gear_icon.png" id="10_icf2j"]
+
+[sub_resource type="Resource" id="Resource_l4mnc"]
+script = ExtResource("4_qs3lx")
+character_scene = ExtResource("3_bb1m7")
+select_icon = ExtResource("5_wu1aa")
+select_name = "Warrior"
+
+[sub_resource type="Resource" id="Resource_0qnpp"]
+script = ExtResource("4_qs3lx")
+character_scene = ExtResource("4_lccdt")
+select_icon = ExtResource("7_cjkgw")
+select_name = "Ranger"
+
+[sub_resource type="Resource" id="Resource_p0jfb"]
+script = ExtResource("4_qs3lx")
+character_scene = ExtResource("3_ycym4")
+select_icon = ExtResource("9_5ngyo")
+select_name = "Mage"
+
+[sub_resource type="Resource" id="Resource_m3dm2"]
+script = ExtResource("4_qs3lx")
+character_scene = ExtResource("3_ycym4")
+select_icon = ExtResource("10_icf2j")
+select_name = "Artificer"
+
+[node name="Main" type="Node"]
+script = ExtResource("1_f725f")
+mob_scene = ExtResource("2_n6asn")
+player_scenes = Array[ExtResource("4_qs3lx")]([SubResource("Resource_l4mnc"), SubResource("Resource_0qnpp"), SubResource("Resource_p0jfb"), SubResource("Resource_m3dm2")])
+
+[node name="DungeonMaster" parent="." instance=ExtResource("6_3j70e")]
+
+[node name="main_menu" parent="." instance=ExtResource("10_366iv")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Inventory" parent="." instance=ExtResource("3_10c67")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_xmq5q")]
+visible = false
+
+[node name="TestDungeon" parent="." instance_placeholder="res://dungeon_rooms/test_dungeon.tscn"]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("endpoint") instance=ExtResource("3_w4utp")]
+position = Vector2(335, 192)
+endpoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Enemy"]
+position = Vector2(112, 384)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(568, 322)
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 1
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+process_priority = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 200.0
+offset_bottom = 51.0
+script = ExtResource("4_p8887")
+
+[node name="Friend" parent="." instance=ExtResource("6_2uyst")]
+position = Vector2(-472, 296)
+is_enemy = true
+
+[connection signal="start_game" from="main_menu" to="." method="_on_main_menu_start_game"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

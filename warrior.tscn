@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1v6vra164hmj"]
+
+[ext_resource type="Script" path="res://warrior.gd" id="1_3plo3"]
+[ext_resource type="Texture2D" uid="uid://cugh1j5p71ag7" path="res://art/enemySwimming_1.png" id="2_gf6px"]
+[ext_resource type="Texture2D" uid="uid://cws3ihdf7t0nt" path="res://art/enemySwimming_2.png" id="3_mw8ie"]
+[ext_resource type="Script" path="res://AttackPivot.gd" id="4_cpimc"]
+[ext_resource type="PackedScene" uid="uid://d06okroiaygym" path="res://swing_attack.tscn" id="7_jag1b"]
+[ext_resource type="PackedScene" uid="uid://5klw2qr7pk5i" path="res://stab_attack.tscn" id="8_01de4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekbtq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gf6px")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mw8ie")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gf6px")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mw8ie")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uq5r"]
+radius = 37.3333
+height = 104.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7lj7"]
+radius = 36.0
+height = 98.6667
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
+collision_mask = 3
+script = ExtResource("1_3plo3")
+hp = 100
+armor = 10
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.413537, 0.629434, 1)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ekbtq")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.33333, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4uq5r")
+debug_color = Color(0.490196, 0.435294, 1, 0.419608)
+
+[node name="AttackPivot" type="Node2D" parent="."]
+rotation = 1.5708
+script = ExtResource("4_cpimc")
+primary_attack_scene = ExtResource("7_jag1b")
+secondary_attack_scene = ExtResource("8_01de4")
+damage_flat = 30
+metadata/_edit_group_ = true
+
+[node name="AttackDelay" type="Timer" parent="AttackPivot"]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_o7lj7")
+debug_color = Color(0.0980392, 0.647059, 0, 0.419608)
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="."]
+one_shot = true

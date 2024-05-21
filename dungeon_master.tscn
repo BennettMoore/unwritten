@@ -1,0 +1,83 @@
+[gd_scene load_steps=27 format=3 uid="uid://cu57bro14f78g"]
+
+[ext_resource type="Script" path="res://dungeon_master.gd" id="1_poi70"]
+[ext_resource type="PackedScene" uid="uid://dknlvidrt0p2a" path="res://dungeon_rooms/test_dungeon.tscn" id="2_a542i"]
+[ext_resource type="PackedScene" uid="uid://inr6ehys7iw0" path="res://dungeon_rooms/dungeon_ew_hallway.tscn" id="2_kgll0"]
+[ext_resource type="Script" path="res://room_data.gd" id="3_b1c4k"]
+[ext_resource type="PackedScene" uid="uid://dodegrugx7cad" path="res://dungeon_rooms/dungeon_ns_hallway.tscn" id="3_cbcgu"]
+[ext_resource type="PackedScene" uid="uid://xqpxl4eshmoe" path="res://dungeon_rooms/dungeon_room_1.tscn" id="4_w16fy"]
+[ext_resource type="PackedScene" uid="uid://dsdgef6fpctaa" path="res://dungeon_rooms/dungeon_room_2.tscn" id="5_wvmcu"]
+[ext_resource type="PackedScene" uid="uid://eii8m3hxw3my" path="res://dungeon_rooms/dungeon_room_3.tscn" id="6_xrp1x"]
+[ext_resource type="PackedScene" uid="uid://ccu6dc5we85yp" path="res://dungeon_rooms/dungeon_room_4.tscn" id="7_6ie6j"]
+[ext_resource type="PackedScene" uid="uid://cl87ds83lb6k2" path="res://dungeon_rooms/dungeon_boss_room.tscn" id="7_xdowi"]
+[ext_resource type="PackedScene" uid="uid://dmqbcnsthxng3" path="res://dungeon_rooms/dungeon_north_cap.tscn" id="8_r86ud"]
+[ext_resource type="PackedScene" uid="uid://bo5g4y66q88uh" path="res://dungeon_rooms/dungeon_east_cap.tscn" id="9_nsmgi"]
+[ext_resource type="PackedScene" uid="uid://c31lqihehhnrq" path="res://dungeon_rooms/dungeon_south_cap.tscn" id="10_gfst4"]
+[ext_resource type="PackedScene" uid="uid://b4n462sre7spi" path="res://dungeon_rooms/dungeon_west_cap.tscn" id="11_d4bmk"]
+
+[sub_resource type="Resource" id="Resource_kkq2o"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("4_w16fy")
+door_dirs = 9
+
+[sub_resource type="Resource" id="Resource_7o72f"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("5_wvmcu")
+door_dirs = 6
+
+[sub_resource type="Resource" id="Resource_ac4tg"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("6_xrp1x")
+door_dirs = 11
+
+[sub_resource type="Resource" id="Resource_ifgnq"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("7_6ie6j")
+door_dirs = 7
+
+[sub_resource type="Resource" id="Resource_xs3vl"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("3_cbcgu")
+door_dirs = 5
+
+[sub_resource type="Resource" id="Resource_60dpn"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("2_kgll0")
+door_dirs = 10
+
+[sub_resource type="Resource" id="Resource_h41n0"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("2_a542i")
+door_dirs = 1
+
+[sub_resource type="Resource" id="Resource_q5bwa"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("7_xdowi")
+door_dirs = 15
+
+[sub_resource type="Resource" id="Resource_8su1s"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("8_r86ud")
+door_dirs = 1
+
+[sub_resource type="Resource" id="Resource_h7621"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("9_nsmgi")
+door_dirs = 2
+
+[sub_resource type="Resource" id="Resource_w35ni"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("10_gfst4")
+door_dirs = 4
+
+[sub_resource type="Resource" id="Resource_ckvbs"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("11_d4bmk")
+door_dirs = 8
+
+[node name="DungeonMaster" type="Node"]
+script = ExtResource("1_poi70")
+rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_kkq2o"), SubResource("Resource_7o72f"), SubResource("Resource_ac4tg"), SubResource("Resource_ifgnq"), SubResource("Resource_xs3vl"), SubResource("Resource_60dpn")])
+start_room = SubResource("Resource_h41n0")
+end_room = SubResource("Resource_q5bwa")
+cap_rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_8su1s"), SubResource("Resource_h7621"), SubResource("Resource_w35ni"), SubResource("Resource_ckvbs")])

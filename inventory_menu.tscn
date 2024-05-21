@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5y3f34fqo353"]
+
+[ext_resource type="Script" path="res://inventory_menu.gd" id="1_jh8ev"]
+[ext_resource type="PackedScene" uid="uid://bcjka587mnujy" path="res://stat.tscn" id="2_xdn8k"]
+[ext_resource type="Texture2D" uid="uid://buo0ars1oenk4" path="res://art/playerGrey_up1.png" id="3_kkxr4"]
+[ext_resource type="Texture2D" uid="uid://k4l07tfdr0dr" path="res://art/playerGrey_up2.png" id="4_7wohj"]
+[ext_resource type="Texture2D" uid="uid://c2j70sisqf8ec" path="res://art/playerGrey_walk1.png" id="5_fr7vr"]
+[ext_resource type="Texture2D" uid="uid://3war6x5501ii" path="res://art/playerGrey_walk2.png" id="6_1h2ek"]
+[ext_resource type="Texture2D" uid="uid://cwghy1dn8jyi3" path="res://art/enemyFlyingAlt_1.png" id="7_khame"]
+[ext_resource type="Texture2D" uid="uid://cbqlqflc2yxli" path="res://art/enemyFlyingAlt_2.png" id="8_ol7vi"]
+
+[node name="Inventory" type="CanvasLayer"]
+process_mode = 2
+layer = 2
+script = ExtResource("1_jh8ev")
+
+[node name="NavBar" type="TabContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -196.0
+offset_right = 320.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="Stats" type="Panel" parent="NavBar"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NavBar/Stats"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 616.0
+offset_bottom = 225.0
+alignment = 1
+
+[node name="Stat1" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Str"
+num_val = 10
+icon = ExtResource("3_kkxr4")
+
+[node name="Stat2" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Dex"
+num_val = 12
+icon = ExtResource("4_7wohj")
+
+[node name="Stat3" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Con"
+num_val = 14
+icon = ExtResource("5_fr7vr")
+
+[node name="Stat4" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Int"
+num_val = 16
+icon = ExtResource("6_1h2ek")
+
+[node name="Stat5" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Wis"
+num_val = 18
+icon = ExtResource("7_khame")
+
+[node name="Stat6" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+layout_mode = 2
+stat_name = "Cha"
+num_val = 20
+icon = ExtResource("8_ol7vi")
+
+[node name="Skills" type="Panel" parent="NavBar"]
+layout_mode = 2
+
+[node name="Map" type="Panel" parent="NavBar"]
+visible = false
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.778
+anchor_top = 0.247
+anchor_right = 0.778
+anchor_bottom = 0.247
+offset_left = -24.256
+offset_top = -0.0559998
+offset_right = -0.256042
+offset_bottom = 23.944
+text = "X"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

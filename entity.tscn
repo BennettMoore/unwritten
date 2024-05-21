@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dceyrj47s6sr"]
+
+[ext_resource type="Script" path="res://Entity.gd" id="1_mtajv"]
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_mtajv")
+metadata/_edit_group_ = true
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="."]
+one_shot = true

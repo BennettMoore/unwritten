@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfr0ij1s2qxuc"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_1ec71"]
+[ext_resource type="Texture2D" uid="uid://buo0ars1oenk4" path="res://art/playerGrey_up1.png" id="2_aank2"]
+[ext_resource type="Texture2D" uid="uid://k4l07tfdr0dr" path="res://art/playerGrey_up2.png" id="3_gq77g"]
+[ext_resource type="Texture2D" uid="uid://c2j70sisqf8ec" path="res://art/playerGrey_walk1.png" id="4_iounk"]
+[ext_resource type="Texture2D" uid="uid://3war6x5501ii" path="res://art/playerGrey_walk2.png" id="5_hxwfn"]
+[ext_resource type="Script" path="res://AttackPivot.gd" id="6_npvco"]
+[ext_resource type="PackedScene" uid="uid://d06okroiaygym" path="res://swing_attack.tscn" id="7_74s40"]
+[ext_resource type="PackedScene" uid="uid://5klw2qr7pk5i" path="res://stab_attack.tscn" id="7_os27e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8a5pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aank2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gq77g")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_iounk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hxwfn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ltpbw"]
+radius = 38.6666
+height = 85.3333
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3a730"]
+radius = 41.3333
+height = 82.6667
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
+collision_mask = 3
+script = ExtResource("1_1ec71")
+speed = 500
+hp = 100
+armor = 10
+is_enemy = false
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_8a5pc")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_ltpbw")
+debug_color = Color(0.490196, 0.435294, 1, 0.419608)
+
+[node name="AttackPivot" type="Node2D" parent="."]
+rotation = 1.5708
+script = ExtResource("6_npvco")
+primary_attack_scene = ExtResource("7_74s40")
+secondary_attack_scene = ExtResource("7_os27e")
+attack_delay = 0.75
+metadata/_edit_group_ = true
+
+[node name="AttackDelay" type="Timer" parent="AttackPivot"]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_3a730")
+debug_color = Color(0.0980392, 0.647059, 0, 0.419608)
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="."]
+one_shot = true

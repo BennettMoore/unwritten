@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddp50lp1vtj6a"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_ows1r"]
+[ext_resource type="Texture2D" uid="uid://cjpb2n0d12qnj" path="res://art/unwritten_logo.png" id="5_x12sj"]
+
+[node name="main_menu" type="CanvasLayer"]
+process_mode = 2
+process_priority = -1
+follow_viewport_enabled = true
+script = ExtResource("1_ows1r")
+
+[node name="MenuContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MenuSplitter" type="HSplitContainer" parent="MenuContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CharacterSelect" type="VBoxContainer" parent="MenuContainer/MenuSplitter"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ItemList" type="ItemList" parent="MenuContainer/MenuSplitter/CharacterSelect"]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme_override_constants/v_separation = 10
+theme_override_constants/icon_margin = 20
+auto_height = true
+same_column_width = true
+fixed_icon_size = Vector2i(80, 100)
+
+[node name="StartButton" type="Button" parent="MenuContainer/MenuSplitter/CharacterSelect"]
+layout_mode = 2
+text = "Enter Game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/MenuSplitter"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameLogo" type="TextureRect" parent="MenuContainer/MenuSplitter/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_x12sj")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuContainer/MenuSplitter/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt tortor aliquam nulla facilisi cras. Tellus id interdum velit laoreet id donec ultrices. Arcu odio ut sem nulla pharetra diam. In fermentum posuere urna nec tincidunt praesent. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis. Id semper risus in hendrerit gravida rutrum. Quis hendrerit dolor magna eget est lorem. Porttitor eget dolor morbi non arcu risus quis varius quam. Aenean et tortor at risus viverra adipiscing at in tellus. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Nisi porta lorem mollis aliquam ut porttitor. Enim nunc faucibus a pellentesque sit amet porttitor. Sed enim ut sem viverra aliquet eget sit amet. Scelerisque viverra mauris in aliquam sem fringilla ut. Orci ac auctor augue mauris augue neque gravida in. Feugiat scelerisque varius morbi enim nunc faucibus a.
+
+Diam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Quisque egestas diam in arcu cursus euismod. Mus mauris vitae ultricies leo. Eu turpis egestas pretium aenean pharetra magna ac. Tempus egestas sed sed risus pretium. Enim facilisis gravida neque convallis a cras semper auctor neque. Vel turpis nunc eget lorem dolor sed viverra. Eget nunc lobortis mattis aliquam. Faucibus ornare suspendisse sed nisi lacus sed. Nec feugiat nisl pretium fusce id velit. Tortor at risus viverra adipiscing at in tellus integer feugiat. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Faucibus purus in massa tempor nec feugiat."
+
+[connection signal="pressed" from="MenuContainer/MenuSplitter/CharacterSelect/StartButton" to="." method="_on_start_button_pressed"]
