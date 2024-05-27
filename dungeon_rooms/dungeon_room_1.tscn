@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="1_y7l5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruwfq"]
-size = Vector2(1037, 901)
+size = Vector2(896, 768)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
 texture = ExtResource("1_y7l5h")
@@ -271,7 +271,7 @@ script = ExtResource("1_oph5n")
 door_dirs = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(518.5, 450.5)
+position = Vector2(512, 448)
 shape = SubResource("RectangleShape2D_ruwfq")
 
 [node name="TileMap" type="TileMap" parent="."]

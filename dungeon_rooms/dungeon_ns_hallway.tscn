@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="1_ifyfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lywcr"]
-size = Vector2(640, 1152)
+size = Vector2(512, 1024)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
 texture = ExtResource("1_ifyfm")

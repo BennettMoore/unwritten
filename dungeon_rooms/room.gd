@@ -91,6 +91,11 @@ func connect_to(door:int, pos:Vector2):
 			_:
 				print("Error! Could not find door at direction: "+str(door)+"!")
 				return false
-		global_position = (pos - door_dist) # Aligns new position to door's origin instead of room's origin
-		open_doors -= door
-		return true
+		var new_position = Transform2D(0, (pos - door_dist)) # Aligns new position to door's origin instead of room's origin
+		var valid_move = !test_move(new_position, Vector2.ZERO)
+		if valid_move:
+			global_position = (pos - door_dist)
+			open_doors -= door
+			return true
+		else:
+			return false

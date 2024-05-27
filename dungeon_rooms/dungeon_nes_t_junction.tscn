@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccu6dc5we85yp"]
+[gd_scene load_steps=7 format=3 uid="uid://c5q1swyitabj4"]
 
-[ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="1_40mhj"]
-[ext_resource type="Script" path="res://dungeon_rooms/room.gd" id="1_coahq"]
+[ext_resource type="Script" path="res://dungeon_rooms/room.gd" id="1_lbyw1"]
+[ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="2_bclyt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kxtf"]
-size = Vector2(896, 896)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bvg5"]
+size = Vector2(512, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrnmw"]
+size = Vector2(384, 512)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
-texture = ExtResource("1_40mhj")
+texture = ExtResource("2_bclyt")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/probability = 0.0
@@ -263,32 +266,36 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yitbk")
 
-[node name="DungeonRoom4" type="StaticBody2D"]
+[node name="DungeonNESTJunction" type="StaticBody2D"]
 z_index = -1
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_coahq")
+script = ExtResource("1_lbyw1")
 door_dirs = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(512, 512)
-shape = SubResource("RectangleShape2D_2kxtf")
+position = Vector2(64, 448)
+shape = SubResource("RectangleShape2D_3bvg5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(512, 448)
+shape = SubResource("RectangleShape2D_jrnmw")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_voo2d")
 format = 2
-layer_0/tile_data = PackedInt32Array(1, 65536, 0, 2, 393216, 7, 4, 262144, 3, 5, 131072, 6, 6, 0, 7, 7, 196608, 0, 65543, 131072, 5, 131079, 262144, 3, 196615, 131072, 6, 3, 65536, 3, 262151, 0, 0, 327687, 393216, 3, 393223, 393216, 3, 393222, 196608, 3, 393220, 327680, 3, 393221, 131072, 1610612742, 393219, 131072, 6, 393217, 131072, 5, 393218, 262144, 3, 196608, 0, 3, 327680, 0, 3, 262144, 0, 3, 131072, 0, 3, 65536, 0, 3, 131074, 262144, 3, 65537, 65536, 1, 65539, 196608, 2, 65538, 196608, 1, 196611, 262144, 1, 327683, 65536, 1610612741, 327684, 131072, 1610612738, 327685, 196608, 1610612739, 262149, 65536, 1, 327686, 65536, 1610612740, 262150, 196608, 1, 196614, 131072, 1610612742, 131078, 131072, 1610612740, 65542, 262144, 1610612739, 65541, 65536, 1, 65540, 131072, 4, 131076, 65536, 1, 131077, 196608, 2, 196613, 196608, 1610612737, 131075, 131072, 5, 262146, 65536, 1, 196610, 196608, 1610612739, 196609, 65536, 1, 131073, 65536, 1, 262145, 65536, 1, 327681, 131072, 1610612740, 327682, 131072, 1610612741, 0, 0, 0, 393216, 0, 4, 458759, 393216, 7, 458752, 0, 4, 458753, 65536, 1, 458754, 262144, 3, 458755, 131072, 5, 458756, 0, 0, 458757, 65536, 7, 458758, 65536, 7)
+layer_0/tile_data = PackedInt32Array(1, 327680, 3, 393217, 65536, 1342177282, 393216, 65536, 1342177285, 196608, 196608, 805306369, 327680, 65536, 3, 262144, 131072, 805306370, 131072, 65536, 1342177281, 65536, 65536, 1, 65537, 196608, 2, 196609, 327680, 805306371, 131073, 65536, 1342177284, 262145, 327680, 805306371, 327681, 131072, 1342177285, 65535, 196608, 1342177282, 458751, 262144, 3, 131071, 327680, 3, 196607, 65536, 4, 327679, 65536, 5, 393215, 196608, 3, 262143, 65536, 3, -65536, 262144, 3, 458752, 327680, 3, 524287, 196608, 3, 458753, 196608, 2, -1, 196608, 2, -65535, 327680, 3, 0, 65536, 2, 458750, 0, 1, 393214, 0, 1, 327678, 0, 1, 262142, 0, 1, 196606, 0, 1, 131070, 0, 1, 65534, 0, 1, 2, 393216, 1, 65538, 0, 7, 131074, 131072, 1342177284, 196610, 196608, 805306369, 262146, 131072, 805306370, 327682, 0, 0, 393218, 393216, 1, 458754, 393216, 3, 524286, 0, 1, -2, 0, 1, -65534, 393216, 1, 131075, 65536, 1, 196611, 327680, 805306371, 262147, 65536, 1342177285, 131076, 131072, 6, 196612, 65536, 805306372, 262148, 327680, 3, 327683, 65536, 7, 327684, 65536, 7, 327685, 65536, 7, 65539, 65536, 0, 65540, 65536, 0, 65541, 65536, 0, 196613, 65536, 1, 131077, 196608, 1, 262149, 65536, 4)
 
 [node name="Centroid" type="Marker2D" parent="."]
-position = Vector2(512, 320)
+position = Vector2(64, 448)
 
 [node name="NorthDoor" type="Marker2D" parent="."]
-position = Vector2(576, 0)
+position = Vector2(64, -128)
 
 [node name="EastDoor" type="Marker2D" parent="."]
-position = Vector2(1024, 320)
+position = Vector2(768, 448)
 
 [node name="SouthDoor" type="Marker2D" parent="."]
-position = Vector2(320, 1024)
+position = Vector2(64, 1024)
