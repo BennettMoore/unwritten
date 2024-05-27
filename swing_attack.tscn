@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d06okroiaygym"]
 
-[ext_resource type="Script" path="res://Attack.gd" id="1_xsg3n"]
+[ext_resource type="Script" path="res://attack.gd" id="1_bxh16"]
 [ext_resource type="PackedScene" uid="uid://d2b8eofr7wexu" path="res://crit_effect.tscn" id="2_2kdre"]
 [ext_resource type="Texture2D" uid="uid://bfv1p4mlcw7bj" path="res://art/swing.png" id="2_ms5xa"]
 
@@ -14,11 +14,9 @@ position = Vector2(108, -8)
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_xsg3n")
+script = ExtResource("1_bxh16")
 crit_effect = ExtResource("2_2kdre")
-damage = 10
-attack_delay = 0.3
-damage_type = 3
+attack_delay = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1

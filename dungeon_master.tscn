@@ -19,61 +19,73 @@
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("4_w16fy")
 door_dirs = 9
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_7o72f"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("5_wvmcu")
 door_dirs = 6
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_ac4tg"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("6_xrp1x")
 door_dirs = 11
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_ifgnq"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("7_6ie6j")
 door_dirs = 7
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_xs3vl"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("3_cbcgu")
 door_dirs = 5
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_60dpn"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("2_kgll0")
 door_dirs = 10
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_h41n0"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("2_a542i")
-door_dirs = 1
+door_dirs = 5
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_q5bwa"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("7_xdowi")
 door_dirs = 15
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_8su1s"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("8_r86ud")
 door_dirs = 1
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_h7621"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("9_nsmgi")
 door_dirs = 2
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_w35ni"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("10_gfst4")
 door_dirs = 4
+min_depth = 0
 
 [sub_resource type="Resource" id="Resource_ckvbs"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("11_d4bmk")
 door_dirs = 8
+min_depth = 0
 
 [node name="DungeonMaster" type="Node"]
 script = ExtResource("1_poi70")

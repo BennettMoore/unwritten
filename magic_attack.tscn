@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxiqdpfi2qvd7"]
 
-[ext_resource type="Script" path="res://Attack.gd" id="1_ix88u"]
+[ext_resource type="Script" path="res://attack.gd" id="1_anp4n"]
 [ext_resource type="PackedScene" uid="uid://d2b8eofr7wexu" path="res://crit_effect.tscn" id="2_gwco4"]
 [ext_resource type="Texture2D" uid="uid://dftfwf5pxctku" path="res://art/magic_blast.png" id="3_lnvdk"]
 
@@ -13,12 +13,11 @@ z_index = 1
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_ix88u")
+script = ExtResource("1_anp4n")
 crit_effect = ExtResource("2_gwco4")
-damage = 10
-knockback = 100
-attack_delay = 0.3
+knockback = 50
 damage_type = 8
+is_ranged = true
 speed = 400.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

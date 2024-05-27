@@ -29,13 +29,10 @@ func _ready():
 		print("Error! Starting room is not a room!")
 		pass
 	var starting_door = start.close_random_door()
-	if starting_door == 0:
-		print("Error! Starting room has no doors!")
-		pass
-	else:
+	while starting_door != 0:
 		print("Closed "+COMPASS[starting_door]+" door")
-	
-	room_placer(start, starting_door, 2)
+		room_placer(start, starting_door, 2)
+		starting_door = start.close_random_door()
 
 ## Recursive function which places rooms according to a modified Depth-first Search algorithm
 func room_placer(old_room:Room, old_door:int, depth_limit:int):
