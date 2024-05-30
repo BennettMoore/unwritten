@@ -17,7 +17,6 @@ const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 @export var green_shop: RoomData ## The regular shop in each level
 @export var blue_shop: RoomData ## The alternate shop in each level
 @export var red_shop: RoomData ## The special shop/event in each level
-@export var cap_rooms: Array[RoomData] ## One-door rooms that are used to close any open doorways
 @export var micro_cap_rooms: Array[RoomData] ## Emergency caps to use when there's no room for regular caps
 @export_range(1, 10, 1, "or_greater") var dungeon_depth = 2 ## How far the dungeon should spread from the origin
 @export_range(1,100,1) var spec_depth = 5 ## How deep the Dungeon Master should go to find space for a special room
@@ -81,19 +80,20 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 					push_warning("Error! "+str(which_spec_room)+" invalid special flag")
 					pass
 		else:
-			failed_spec_placements += 1
+			if spec_flags != 0: 
+				failed_spec_placements += 1
 			match DOOR_MATCH[old_door]:
 				NORTH:
-					next_room_data = north_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[0]
+					next_room_data = north_rooms.pick_random()
 					print("North room found!")
 				EAST:
-					next_room_data = east_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[1]
+					next_room_data = east_rooms.pick_random()
 					print("East room found!")
 				SOUTH:
-					next_room_data = south_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[2]
+					next_room_data = south_rooms.pick_random()
 					print("South room found!")
 				WEST:
-					next_room_data = west_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[3]
+					next_room_data = west_rooms.pick_random()
 					print("West room found!")
 				_:
 					push_warning("Error! "+str(DOOR_MATCH[old_door])+" invalid door direction")
@@ -104,10 +104,16 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 		if !valid_move:
 			spec_room_type = 0
 			remove_child(next_room)
+			continue
 		elif spec_flags != 0:
 			spec_flags &= ~spec_room_type
 			failed_spec_placements = 0
 			print("Placed Special Room! Type: "+str(spec_room_type))
+		
+		if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0):
+			next_room.shuffle_doors(DOOR_MATCH[old_door])
+		else:
+			next_room.shuffle_doors(DOOR_MATCH[old_door], 1) # Turns room into a cap
 	if timeout_counter <= 0:
 		push_warning("Error! Timed out")
 		print("ERRROR: room_placer Timed out")

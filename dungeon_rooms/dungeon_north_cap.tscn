@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmqbcnsthxng3"]
+[gd_scene load_steps=6 format=3 uid="uid://45vh5d6s2eu"]
 
 [ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="1_2qunf"]
 [ext_resource type="Script" path="res://dungeon_rooms/room.gd" id="1_ies85"]

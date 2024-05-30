@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cu57bro14f78g"]
+[gd_scene load_steps=43 format=3 uid="uid://cu57bro14f78g"]
 
 [ext_resource type="Script" path="res://dungeon_master.gd" id="1_poi70"]
 [ext_resource type="PackedScene" uid="uid://dknlvidrt0p2a" path="res://dungeon_rooms/test_dungeon.tscn" id="2_a542i"]
@@ -10,15 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://eii8m3hxw3my" path="res://dungeon_rooms/dungeon_room_3.tscn" id="6_xrp1x"]
 [ext_resource type="PackedScene" uid="uid://ccu6dc5we85yp" path="res://dungeon_rooms/dungeon_room_4.tscn" id="7_6ie6j"]
 [ext_resource type="PackedScene" uid="uid://cl87ds83lb6k2" path="res://dungeon_rooms/dungeon_boss_room.tscn" id="7_xdowi"]
-[ext_resource type="PackedScene" uid="uid://dmqbcnsthxng3" path="res://dungeon_rooms/dungeon_north_cap.tscn" id="8_r86ud"]
-[ext_resource type="PackedScene" uid="uid://bo5g4y66q88uh" path="res://dungeon_rooms/dungeon_east_cap.tscn" id="9_nsmgi"]
 [ext_resource type="PackedScene" uid="uid://c5q1swyitabj4" path="res://dungeon_rooms/dungeon_nes_t_junction.tscn" id="9_plpbu"]
-[ext_resource type="PackedScene" uid="uid://c31lqihehhnrq" path="res://dungeon_rooms/dungeon_south_cap.tscn" id="10_gfst4"]
 [ext_resource type="PackedScene" uid="uid://d37y26g4mguy4" path="res://dungeon_rooms/dungeon_nsw_t_junction.tscn" id="10_p4kuq"]
-[ext_resource type="PackedScene" uid="uid://b4n462sre7spi" path="res://dungeon_rooms/dungeon_west_cap.tscn" id="11_d4bmk"]
+[ext_resource type="PackedScene" uid="uid://cc8ax6h8l5wal" path="res://dungeon_rooms/dungeon_square_1.tscn" id="11_fh0tj"]
 [ext_resource type="PackedScene" uid="uid://c8ggg7qf65nsv" path="res://dungeon_rooms/dungeon_green_shop.tscn" id="11_vmuw8"]
 [ext_resource type="PackedScene" uid="uid://cy1fa0rqx5sag" path="res://dungeon_rooms/dungeon_blue_shop.tscn" id="12_23x28"]
+[ext_resource type="PackedScene" uid="uid://bwyf7r6e7yvdt" path="res://dungeon_rooms/dungeon_square_2.tscn" id="12_ig0a3"]
 [ext_resource type="PackedScene" uid="uid://dntb5634sgr57" path="res://dungeon_rooms/dungeon_red_shop.tscn" id="13_4d34j"]
+[ext_resource type="PackedScene" uid="uid://dhp5tyb4wug3y" path="res://dungeon_rooms/dungeon_square_3.tscn" id="13_6tqs7"]
 [ext_resource type="PackedScene" uid="uid://qlp3rdpvhm4x" path="res://dungeon_rooms/dungeon_north_micro_cap.tscn" id="20_immny"]
 [ext_resource type="PackedScene" uid="uid://bruggjq7fd0ym" path="res://dungeon_rooms/dungeon_east_micro_cap.tscn" id="21_wja3w"]
 [ext_resource type="PackedScene" uid="uid://dmoxxoufsdkb8" path="res://dungeon_rooms/dungeon_south_micro_cap.tscn" id="22_fubvs"]
@@ -27,37 +26,37 @@
 [sub_resource type="Resource" id="Resource_kkq2o"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("4_w16fy")
-door_dirs = 9
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_7o72f"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("5_wvmcu")
-door_dirs = 6
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_ac4tg"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("6_xrp1x")
-door_dirs = 11
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_ifgnq"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("7_6ie6j")
-door_dirs = 7
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_xs3vl"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("3_cbcgu")
-door_dirs = 5
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_60dpn"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("2_kgll0")
-door_dirs = 10
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_tcnrg"]
@@ -70,6 +69,24 @@ min_depth = 0
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("10_p4kuq")
 door_dirs = 13
+min_depth = 0
+
+[sub_resource type="Resource" id="Resource_vidj6"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("11_fh0tj")
+door_dirs = 15
+min_depth = 0
+
+[sub_resource type="Resource" id="Resource_piwva"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("12_ig0a3")
+door_dirs = 15
+min_depth = 0
+
+[sub_resource type="Resource" id="Resource_0hfmg"]
+script = ExtResource("3_b1c4k")
+room_scene = ExtResource("13_6tqs7")
+door_dirs = 15
 min_depth = 0
 
 [sub_resource type="Resource" id="Resource_h41n0"]
@@ -87,44 +104,20 @@ min_depth = 1
 [sub_resource type="Resource" id="Resource_5ly5v"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("11_vmuw8")
-door_dirs = 10
+door_dirs = 15
 min_depth = 1
 
 [sub_resource type="Resource" id="Resource_xeodr"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("12_23x28")
-door_dirs = 5
+door_dirs = 15
 min_depth = 1
 
 [sub_resource type="Resource" id="Resource_imj7j"]
 script = ExtResource("3_b1c4k")
 room_scene = ExtResource("13_4d34j")
-door_dirs = 8
+door_dirs = 15
 min_depth = 1
-
-[sub_resource type="Resource" id="Resource_8su1s"]
-script = ExtResource("3_b1c4k")
-room_scene = ExtResource("8_r86ud")
-door_dirs = 1
-min_depth = 0
-
-[sub_resource type="Resource" id="Resource_h7621"]
-script = ExtResource("3_b1c4k")
-room_scene = ExtResource("9_nsmgi")
-door_dirs = 2
-min_depth = 0
-
-[sub_resource type="Resource" id="Resource_w35ni"]
-script = ExtResource("3_b1c4k")
-room_scene = ExtResource("10_gfst4")
-door_dirs = 4
-min_depth = 0
-
-[sub_resource type="Resource" id="Resource_ckvbs"]
-script = ExtResource("3_b1c4k")
-room_scene = ExtResource("11_d4bmk")
-door_dirs = 8
-min_depth = 0
 
 [sub_resource type="Resource" id="Resource_w1ay0"]
 script = ExtResource("3_b1c4k")
@@ -152,12 +145,11 @@ min_depth = 0
 
 [node name="DungeonMaster" type="Node"]
 script = ExtResource("1_poi70")
-rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_kkq2o"), SubResource("Resource_7o72f"), SubResource("Resource_ac4tg"), SubResource("Resource_ifgnq"), SubResource("Resource_xs3vl"), SubResource("Resource_60dpn"), SubResource("Resource_tcnrg"), SubResource("Resource_rjido")])
+rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_kkq2o"), SubResource("Resource_7o72f"), SubResource("Resource_ac4tg"), SubResource("Resource_ifgnq"), SubResource("Resource_xs3vl"), SubResource("Resource_60dpn"), SubResource("Resource_tcnrg"), SubResource("Resource_rjido"), SubResource("Resource_vidj6"), SubResource("Resource_piwva"), SubResource("Resource_0hfmg")])
 start_room = SubResource("Resource_h41n0")
 end_room = SubResource("Resource_q5bwa")
 green_shop = SubResource("Resource_5ly5v")
 blue_shop = SubResource("Resource_xeodr")
 red_shop = SubResource("Resource_imj7j")
-cap_rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_8su1s"), SubResource("Resource_h7621"), SubResource("Resource_w35ni"), SubResource("Resource_ckvbs")])
 micro_cap_rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_w1ay0"), SubResource("Resource_hnxvu"), SubResource("Resource_phro7"), SubResource("Resource_kq6oa")])
-placement_attempts = 10
+placement_attempts = 5
