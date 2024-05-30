@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://dungeon_rooms/room.gd" id="1_t3thu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty68d"]
-size = Vector2(2048, 1152)
+size = Vector2(2160, 1264)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
 texture = ExtResource("1_l3kdd")

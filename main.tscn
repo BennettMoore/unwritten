@@ -60,13 +60,6 @@ visible = false
 
 [node name="TestDungeon" parent="." instance_placeholder="res://dungeon_rooms/test_dungeon.tscn"]
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("endpoint") instance=ExtResource("3_w4utp")]
-position = Vector2(335, 192)
-endpoint = NodePath("Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="Enemy"]
-position = Vector2(112, 384)
-
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(568, 322)
 
@@ -90,5 +83,14 @@ script = ExtResource("4_p8887")
 position = Vector2(-472, 296)
 is_enemy = true
 
+[node name="Enemy" parent="." node_paths=PackedStringArray("endpoint") instance=ExtResource("3_w4utp")]
+position = Vector2(320, 192)
+endpoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Enemy"]
+position = Vector2(384, 128)
+
 [connection signal="start_game" from="main_menu" to="." method="_on_main_menu_start_game"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+
+[editable path="Enemy"]

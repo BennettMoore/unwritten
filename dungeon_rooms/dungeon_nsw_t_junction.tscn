@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://ffwtjwijt3kj" path="res://art/dungeon_tilemap.png" id="2_p64dk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lywcr"]
-size = Vector2(512, 1024)
+size = Vector2(624, 1136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmbob"]
-size = Vector2(384, 512)
+size = Vector2(384, 624)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
 texture = ExtResource("2_p64dk")
@@ -278,7 +278,7 @@ position = Vector2(64, 448)
 shape = SubResource("RectangleShape2D_lywcr")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-384, 448)
+position = Vector2(-440, 448)
 shape = SubResource("RectangleShape2D_nmbob")
 
 [node name="TileMap" type="TileMap" parent="."]

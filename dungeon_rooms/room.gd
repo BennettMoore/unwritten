@@ -70,7 +70,7 @@ func get_door_pos(door:int):
 	return null
 
 ## Moves the room to connect its door to a specific position
-func connect_to(door:int, pos:Vector2):
+func connect_to(door:int, pos:Vector2, ignore_collision = false):
 	if !(door&door_dirs):
 		print("Error! "+COMPASS[door]+" door invalid!")
 		return false
@@ -92,8 +92,8 @@ func connect_to(door:int, pos:Vector2):
 				print("Error! Could not find door at direction: "+str(door)+"!")
 				return false
 		var new_position = Transform2D(0, (pos - door_dist)) # Aligns new position to door's origin instead of room's origin
-		var valid_move = !test_move(new_position, Vector2.ZERO)
-		if valid_move:
+		var valid_move = !test_move(new_position, Vector2.ZERO, null, 0)
+		if valid_move or ignore_collision:
 			global_position = (pos - door_dist)
 			open_doors -= door
 			return true

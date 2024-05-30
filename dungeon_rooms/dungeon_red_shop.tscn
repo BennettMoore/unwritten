@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="3_ie3oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks4dr"]
-size = Vector2(1024, 768)
+size = Vector2(1136, 880)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yitbk"]
 texture = ExtResource("2_1oq6t")

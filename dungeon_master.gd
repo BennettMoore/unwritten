@@ -18,8 +18,10 @@ const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 @export var blue_shop: RoomData ## The alternate shop in each level
 @export var red_shop: RoomData ## The special shop/event in each level
 @export var cap_rooms: Array[RoomData] ## One-door rooms that are used to close any open doorways
-@export_range(0, 10, 1, "or_greater") var dungeon_depth = 2
-@export_range(1,100,1) var placement_attempts = 15
+@export var micro_cap_rooms: Array[RoomData] ## Emergency caps to use when there's no room for regular caps
+@export_range(1, 10, 1, "or_greater") var dungeon_depth = 2 ## How far the dungeon should spread from the origin
+@export_range(1,100,1) var spec_depth = 5 ## How deep the Dungeon Master should go to find space for a special room
+@export_range(1,100,1) var placement_attempts = 15 ## How many times the Dungeon Master should try placing a room before giving up
 @export_flags("Boss Room", "Green Shop", "Blue Shop", "Red Shop") var starting_flags = 15 ## Since this is the root node, activate all special flags
 
 @onready var north_rooms: Array[RoomData] = rooms.filter(has_north)
@@ -42,10 +44,10 @@ func _ready():
 		starting_door = start.close_random_door()
 		print("Closed "+COMPASS[starting_door]+" door")
 		print("Inheritance: "+str(start_inheritance[n]))
-		room_placer(start, starting_door, dungeon_depth, room_rand, start_inheritance[n])
+		room_placer(start, starting_door, dungeon_depth, spec_depth, room_rand, start_inheritance[n])
 
 ## Recursive function which places rooms according to a modified Depth-first Search algorithm
-func room_placer(old_room:Room, old_door:int, depth_limit:int, room_rand:RandomNumberGenerator, spec_flags = 0, spec_place_attempts = 0):
+func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit: int, room_rand:RandomNumberGenerator, spec_flags = 0, failed_spec_placements = 0):
 	var next_room_data:RoomData
 	var next_room:Room
 	var valid_move = false
@@ -54,10 +56,10 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, room_rand:RandomN
 	while !valid_move and timeout_counter > 0:
 		timeout_counter -= 1
 		if old_door == 0:
-			print("No door found!")
+			print("Error! No door found!")
 			return
 		var which_spec_room = valid_spec_room(old_door,spec_flags)
-		if which_spec_room != 0 and depth_limit <= end_room.min_depth and timeout_counter > placement_attempts/2:
+		if which_spec_room != 0 and depth_limit <= end_room.min_depth and timeout_counter > placement_attempts/4:
 			match which_spec_room:
 				SPEC_FLAGS.END:
 					next_room_data = end_room
@@ -79,19 +81,19 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, room_rand:RandomN
 					push_warning("Error! "+str(which_spec_room)+" invalid special flag")
 					pass
 		else:
-			spec_place_attempts += 1
+			failed_spec_placements += 1
 			match DOOR_MATCH[old_door]:
 				NORTH:
-					next_room_data = north_rooms.pick_random() if depth_limit > 0 else cap_rooms[0]
+					next_room_data = north_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[0]
 					print("North room found!")
 				EAST:
-					next_room_data = east_rooms.pick_random() if depth_limit > 0 else cap_rooms[1]
+					next_room_data = east_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[1]
 					print("East room found!")
 				SOUTH:
-					next_room_data = south_rooms.pick_random() if depth_limit > 0 else cap_rooms[2]
+					next_room_data = south_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[2]
 					print("South room found!")
 				WEST:
-					next_room_data = west_rooms.pick_random() if depth_limit > 0 else cap_rooms[3]
+					next_room_data = west_rooms.pick_random() if depth_limit > 0 or (spec_flags != 0 and spec_depth > 0) else cap_rooms[3]
 					print("West room found!")
 				_:
 					push_warning("Error! "+str(DOOR_MATCH[old_door])+" invalid door direction")
@@ -104,15 +106,34 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, room_rand:RandomN
 			remove_child(next_room)
 		elif spec_flags != 0:
 			spec_flags &= ~spec_room_type
-			spec_place_attempts = 0
+			failed_spec_placements = 0
 			print("Placed Special Room! Type: "+str(spec_room_type))
 	if timeout_counter <= 0:
 		push_warning("Error! Timed out")
 		print("ERRROR: room_placer Timed out")
+		match DOOR_MATCH[old_door]:
+				NORTH:
+					next_room_data = micro_cap_rooms[0]
+					print("Emergency North cap used!")
+				EAST:
+					next_room_data = micro_cap_rooms[1]
+					print("Emergency East cap used!")
+				SOUTH:
+					next_room_data = micro_cap_rooms[2]
+					print("Emergency South cap used!")
+				WEST:
+					next_room_data = micro_cap_rooms[3]
+					print("Emergency West cap used!")
+				_:
+					push_warning("Error! "+str(DOOR_MATCH[old_door])+" invalid door direction")
+					pass
+		next_room = next_room_data.room_scene.instantiate()
+		add_child(next_room)
+		next_room.connect_to(DOOR_MATCH[old_door], old_room.get_door_pos(old_door), true)
 	elif next_room.has_open_doors():
 		var next_inheritance = plan_inheritance(next_room.has_open_doors(), spec_flags)
 		for n in range(next_room.has_open_doors()):
-			room_placer(next_room, next_room.close_random_door(), depth_limit-1, room_rand, next_inheritance[n], spec_place_attempts)
+			room_placer(next_room, next_room.close_random_door(), depth_limit-1, spec_depth_limit-1, room_rand, next_inheritance[n], failed_spec_placements)
 	
 func has_north(room:RoomData):
 	return room.door_dirs & NORTH
