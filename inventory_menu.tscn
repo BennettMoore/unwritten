@@ -15,69 +15,112 @@ layer = 2
 script = ExtResource("1_jh8ev")
 
 [node name="NavBar" type="TabContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -196.0
-offset_right = 320.0
-offset_bottom = 188.0
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Skills" type="Panel" parent="NavBar"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NavBar/Skills"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NavBar/Skills/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt tortor aliquam nulla facilisi cras. Tellus id interdum velit laoreet id donec ultrices. Arcu odio ut sem nulla pharetra diam. In fermentum posuere urna nec tincidunt praesent. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis. Id semper risus in hendrerit gravida rutrum. Quis hendrerit dolor magna eget est lorem. Porttitor eget dolor morbi non arcu risus quis varius quam. Aenean et tortor at risus viverra adipiscing at in tellus. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Nisi porta lorem mollis aliquam ut porttitor. Enim nunc faucibus a pellentesque sit amet porttitor. Sed enim ut sem viverra aliquet eget sit amet. Scelerisque viverra mauris in aliquam sem fringilla ut. Orci ac auctor augue mauris augue neque gravida in. Feugiat scelerisque varius morbi enim nunc faucibus a.
+
+Diam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Quisque egestas diam in arcu cursus euismod. Mus mauris vitae ultricies leo. Eu turpis egestas pretium aenean pharetra magna ac. Tempus egestas sed sed risus pretium. Enim facilisis gravida neque convallis a cras semper auctor neque. Vel turpis nunc eget lorem dolor sed viverra. Eget nunc lobortis mattis aliquam. Faucibus ornare suspendisse sed nisi lacus sed. Nec feugiat nisl pretium fusce id velit. Tortor at risus viverra adipiscing at in tellus integer feugiat. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Faucibus purus in massa tempor nec feugiat."
+
+[node name="SkillInventoryContainer" type="ScrollContainer" parent="NavBar/Skills/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color(0, 0.537602, 0.962642, 1)
+border_width = 2.0
+
+[node name="SkillTreeContainer" type="ScrollContainer" parent="NavBar/Skills/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReferenceRect" type="ReferenceRect" parent="NavBar/Skills/HBoxContainer/SkillTreeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color(0, 0.643578, 0.279742, 1)
+border_width = 2.0
 
 [node name="Stats" type="Panel" parent="NavBar"]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NavBar/Stats"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 17.0
-offset_right = 616.0
-offset_bottom = 225.0
+[node name="MarginContainer" type="MarginContainer" parent="NavBar/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NavBar/Stats/MarginContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="Stat1" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat1" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Str"
-num_val = 10
+stat_name = "Melee"
 icon = ExtResource("3_kkxr4")
 
-[node name="Stat2" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat2" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Dex"
-num_val = 12
+stat_name = "Ranged"
+stat_idx = 1
 icon = ExtResource("4_7wohj")
 
-[node name="Stat3" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat3" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Con"
-num_val = 14
+stat_name = "Magic"
+stat_idx = 2
 icon = ExtResource("5_fr7vr")
 
-[node name="Stat4" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat4" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Int"
-num_val = 16
+stat_name = "Armor"
+stat_idx = 3
 icon = ExtResource("6_1h2ek")
 
-[node name="Stat5" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat5" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Wis"
-num_val = 18
+stat_name = "Crit Chance"
+stat_idx = 4
 icon = ExtResource("7_khame")
 
-[node name="Stat6" parent="NavBar/Stats/HBoxContainer" instance=ExtResource("2_xdn8k")]
+[node name="Stat6" parent="NavBar/Stats/MarginContainer/HBoxContainer" instance=ExtResource("2_xdn8k")]
 layout_mode = 2
-stat_name = "Cha"
-num_val = 20
+stat_name = "Speed"
+stat_idx = 5
 icon = ExtResource("8_ol7vi")
-
-[node name="Skills" type="Panel" parent="NavBar"]
-layout_mode = 2
 
 [node name="Map" type="Panel" parent="NavBar"]
 visible = false
@@ -85,14 +128,13 @@ layout_mode = 2
 
 [node name="ExitButton" type="Button" parent="."]
 anchors_preset = -1
-anchor_left = 0.778
-anchor_top = 0.247
-anchor_right = 0.778
-anchor_bottom = 0.247
-offset_left = -24.256
-offset_top = -0.0559998
-offset_right = -0.256042
-offset_bottom = 23.944
+anchor_left = 1.0
+anchor_top = 0.049
+anchor_right = 1.0
+anchor_bottom = 0.049
+offset_left = -24.0
+offset_top = 0.247999
+offset_bottom = 31.248
 text = "X"
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

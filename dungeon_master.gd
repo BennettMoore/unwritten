@@ -115,7 +115,7 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 		else:
 			next_room.shuffle_doors(DOOR_MATCH[old_door], 1) # Turns room into a cap
 	if timeout_counter <= 0:
-		push_warning("Error! Timed out")
+		push_error("Error! Timed out")
 		print("ERRROR: room_placer Timed out")
 		match DOOR_MATCH[old_door]:
 				NORTH:

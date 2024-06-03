@@ -17,3 +17,22 @@ var primary_attack_scene: PackedScene = load("res://swing_attack.tscn") ## The p
 var secondary_attack_scene: PackedScene = load("res://stab_attack.tscn") ## The player's alternate weapon scene
 var damage_flat = 0 ## The player's flat damage bonus 
 var damage_mul = 1.0 ## The player's damage multiplier
+
+## Returns player stats in order to properly render them in the inventory menu
+func get_data(idx):
+	match idx:
+		0:
+			return melee_damage
+		1:
+			return ranged_damage
+		2:
+			return magic_damage
+		3:
+			return armor
+		4:
+			return crit_chance
+		5:
+			return speed
+		_:
+			print("Error! "+str(idx)+" is not a real data index")
+			return -1

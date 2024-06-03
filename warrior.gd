@@ -15,5 +15,7 @@ func setStats():
 	PlayerData.speed = 300
 	PlayerData.max_hp = 150
 	PlayerData.hp = 150
+	PlayerData.crit_chance = 0.05
+	PlayerData.crit_damage = 2
 	if primary_attack_scene is PackedScene: PlayerData.primary_attack_scene = primary_attack_scene
 	if secondary_attack_scene is PackedScene: PlayerData.secondary_attack_scene = secondary_attack_scene

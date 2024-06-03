@@ -32,6 +32,8 @@ func setStats():
 	PlayerData.speed = speed
 	PlayerData.max_hp = max_hp
 	PlayerData.hp = hp
+	PlayerData.crit_chance = crit_chance
+	PlayerData.crit_damage = crit_damage
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func moveEntity(delta=0):
