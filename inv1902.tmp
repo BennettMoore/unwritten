@@ -1,15 +1,52 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5y3f34fqo353"]
+[gd_scene load_steps=24 format=3 uid="uid://c5y3f34fqo353"]
 
 [ext_resource type="Script" path="res://inventory_menu.gd" id="1_jh8ev"]
-[ext_resource type="PackedScene" uid="uid://cyk1q3hg5wr3d" path="res://drop_point.tscn" id="2_2bewb"]
 [ext_resource type="PackedScene" uid="uid://duvkpmajc6yb7" path="res://skill_tree.tscn" id="2_bw6ab"]
+[ext_resource type="PackedScene" uid="uid://cyk1q3hg5wr3d" path="res://drop_point.tscn" id="2_qw2hl"]
 [ext_resource type="PackedScene" uid="uid://bcjka587mnujy" path="res://stat.tscn" id="2_xdn8k"]
+[ext_resource type="Script" path="res://skill_data.gd" id="3_7cutj"]
 [ext_resource type="Texture2D" uid="uid://buo0ars1oenk4" path="res://art/playerGrey_up1.png" id="3_kkxr4"]
 [ext_resource type="Texture2D" uid="uid://k4l07tfdr0dr" path="res://art/playerGrey_up2.png" id="4_7wohj"]
+[ext_resource type="Texture2D" uid="uid://b3a6mf3b0g47x" path="res://art/skill_sword_1.png" id="4_cmyq6"]
+[ext_resource type="Texture2D" uid="uid://du027rtwknudh" path="res://art/skill_sword_2.png" id="5_bcjxf"]
 [ext_resource type="Texture2D" uid="uid://c2j70sisqf8ec" path="res://art/playerGrey_walk1.png" id="5_fr7vr"]
 [ext_resource type="Texture2D" uid="uid://3war6x5501ii" path="res://art/playerGrey_walk2.png" id="6_1h2ek"]
+[ext_resource type="Texture2D" uid="uid://c4hi3a3ojrqt2" path="res://art/skill_sword_3.png" id="6_a6he8"]
 [ext_resource type="Texture2D" uid="uid://cwghy1dn8jyi3" path="res://art/enemyFlyingAlt_1.png" id="7_khame"]
+[ext_resource type="Texture2D" uid="uid://ca4tl07sbckgm" path="res://art/skill_sword_4.png" id="7_sxyxp"]
 [ext_resource type="Texture2D" uid="uid://cbqlqflc2yxli" path="res://art/enemyFlyingAlt_2.png" id="8_ol7vi"]
+[ext_resource type="Texture2D" uid="uid://bf3xiu76akpjh" path="res://art/skill_duck_1.png" id="8_wpa7b"]
+[ext_resource type="Texture2D" uid="uid://w18l51o2t73k" path="res://art/skill_duck_2.png" id="9_4vmrc"]
+[ext_resource type="Texture2D" uid="uid://ccyff3lhr3o0c" path="res://art/skill_duck_3.png" id="10_cq6bj"]
+[ext_resource type="Texture2D" uid="uid://coh0it472u1rs" path="res://art/skill_duck_4.png" id="11_1g167"]
+
+[sub_resource type="Resource" id="Resource_bf4rv"]
+script = ExtResource("3_7cutj")
+skill_icons = Array[CompressedTexture2D]([ExtResource("4_cmyq6"), ExtResource("5_bcjxf"), ExtResource("6_a6he8"), ExtResource("7_sxyxp")])
+skill_name = "Sword"
+skill_level = 2
+is_active = false
+
+[sub_resource type="Resource" id="Resource_x3dvr"]
+script = ExtResource("3_7cutj")
+skill_icons = Array[CompressedTexture2D]([ExtResource("8_wpa7b"), ExtResource("9_4vmrc"), ExtResource("10_cq6bj"), ExtResource("11_1g167")])
+skill_name = "Duck"
+skill_level = 0
+is_active = false
+
+[sub_resource type="Resource" id="Resource_7f746"]
+script = ExtResource("3_7cutj")
+skill_icons = Array[CompressedTexture2D]([ExtResource("4_cmyq6"), ExtResource("5_bcjxf"), ExtResource("6_a6he8"), ExtResource("7_sxyxp")])
+skill_name = "Better Sword"
+skill_level = 2
+is_active = false
+
+[sub_resource type="Resource" id="Resource_ysal5"]
+script = ExtResource("3_7cutj")
+skill_icons = Array[CompressedTexture2D]([ExtResource("8_wpa7b"), ExtResource("9_4vmrc"), ExtResource("10_cq6bj"), ExtResource("11_1g167")])
+skill_name = "Better Duck"
+skill_level = 3
+is_active = false
 
 [node name="Inventory" type="CanvasLayer"]
 process_mode = 2
@@ -56,8 +93,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DropPoint" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_2bewb")]
+[node name="DropPoint" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_qw2hl")]
 layout_mode = 2
+held_data = SubResource("Resource_bf4rv")
+
+[node name="DropPoint2" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_qw2hl")]
+layout_mode = 2
+held_data = SubResource("Resource_x3dvr")
+
+[node name="DropPoint3" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_qw2hl")]
+layout_mode = 2
+held_data = SubResource("Resource_7f746")
+
+[node name="DropPoint4" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_qw2hl")]
+layout_mode = 2
+held_data = SubResource("Resource_ysal5")
 
 [node name="SkillTreeContainer" type="ScrollContainer" parent="NavBar/Skills/HBoxContainer"]
 layout_mode = 2
