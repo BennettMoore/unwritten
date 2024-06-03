@@ -42,7 +42,7 @@ func _ready():
 	for n in range(start.has_open_doors()):
 		starting_door = start.close_random_door()
 		print("Closed "+COMPASS[starting_door]+" door")
-		print("Inheritance: "+str(start_inheritance[n]))
+		print("Inheritance: "+flag_translator(start_inheritance[n]))
 		room_placer(start, starting_door, dungeon_depth, spec_depth, room_rand, start_inheritance[n])
 
 ## Recursive function which places rooms according to a modified Depth-first Search algorithm
@@ -153,6 +153,17 @@ func has_south(room:RoomData):
 func has_west(room:RoomData):
 	return room.door_dirs & WEST
 	
+func flag_translator(spec_flags):
+	var flag_names = ""
+	if spec_flags&SPEC_FLAGS.END:
+		flag_names+="End room, "
+	if spec_flags&SPEC_FLAGS.GREEN:
+		flag_names+="Green shop, "
+	if spec_flags&SPEC_FLAGS.BLUE:
+		flag_names+="Blue shop, "
+	if spec_flags&SPEC_FLAGS.RED:
+		flag_names+="Red shop, "
+	return flag_names
 ## Plans how special flags will be inherited by the children of this room
 func plan_inheritance(open_doors:int, spec_flags:int):
 	if open_doors == 0: return []
