@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyk1q3hg5wr3d"]
+[gd_scene load_steps=9 format=3 uid="uid://cyk1q3hg5wr3d"]
 
 [ext_resource type="Script" path="res://drop_point.gd" id="1_uw0ao"]
+[ext_resource type="Texture2D" uid="uid://b58r67e7hjw2n" path="res://icon.svg" id="1_vqqmp"]
 [ext_resource type="Script" path="res://skill_data.gd" id="2_vx3qw"]
 [ext_resource type="Texture2D" uid="uid://dkcil3ln2euko" path="res://art/skill_empty_1.png" id="3_hjfaa"]
 [ext_resource type="Texture2D" uid="uid://bc028te5mgjx6" path="res://art/skill_empty_2.png" id="4_w6m2m"]
 [ext_resource type="Texture2D" uid="uid://bwc3th51ndiew" path="res://art/skill_empty_3.png" id="5_a8k52"]
 [ext_resource type="Texture2D" uid="uid://b7nfdcd8kbp2k" path="res://art/skill_empty_4.png" id="6_37qhg"]
-[ext_resource type="Script" path="res://skill.gd" id="7_6iktp"]
 
 [sub_resource type="Resource" id="Resource_dd08v"]
 script = ExtResource("2_vx3qw")
@@ -15,29 +15,22 @@ skill_name = "Test"
 skill_level = 0
 is_active = false
 
-[sub_resource type="Resource" id="Resource_ovc4q"]
-script = ExtResource("2_vx3qw")
-skill_icons = Array[CompressedTexture2D]([ExtResource("3_hjfaa"), ExtResource("4_w6m2m"), ExtResource("5_a8k52"), ExtResource("6_37qhg")])
-skill_name = "NULL"
-skill_level = 0
-is_active = false
-
-[node name="DropPoint" type="Panel"]
-modulate = Color(0.147291, 0.737311, 1, 1)
+[node name="DropPoint" type="TextureRect"]
 custom_minimum_size = Vector2(40, 40)
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = ExtResource("1_vqqmp")
+expand_mode = 1
 script = ExtResource("1_uw0ao")
+empty_texture = ExtResource("1_vqqmp")
 held_data = SubResource("Resource_dd08v")
 
-[node name="Skill" type="TextureRect" parent="."]
-visible = false
-top_level = true
-layout_mode = 1
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(3.7542e-06, 0.59603, 0.815043, 1)
+show_behind_parent = true
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_hjfaa")
-script = ExtResource("7_6iktp")
-data = SubResource("Resource_ovc4q")
+mouse_filter = 2
