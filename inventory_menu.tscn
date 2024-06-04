@@ -22,6 +22,7 @@ skill_icons = Array[CompressedTexture2D]([ExtResource("4_07d57"), ExtResource("5
 skill_name = "Test"
 skill_level = 1
 is_active = false
+tooltip = ""
 
 [node name="Inventory" type="CanvasLayer"]
 process_mode = 2
@@ -62,15 +63,25 @@ Diam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Quisque e
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer"]
+[node name="SkillInventory" type="VBoxContainer" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DropPoint" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/VBoxContainer" instance=ExtResource("2_2bewb")]
+[node name="DropPoint" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/SkillInventory" instance=ExtResource("2_2bewb")]
 layout_mode = 2
 held_data = SubResource("Resource_o2a0b")
+has_skill = true
+in_tree = false
+
+[node name="DropPoint2" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/SkillInventory" instance=ExtResource("2_2bewb")]
+layout_mode = 2
+in_tree = false
+
+[node name="DropPoint3" parent="NavBar/Skills/HBoxContainer/SkillInventoryContainer/SkillInventory" instance=ExtResource("2_2bewb")]
+layout_mode = 2
+in_tree = false
 
 [node name="SkillTreeContainer" type="ScrollContainer" parent="NavBar/Skills/HBoxContainer"]
 layout_mode = 2
@@ -78,6 +89,7 @@ size_flags_horizontal = 3
 
 [node name="SkillTree" parent="NavBar/Skills/HBoxContainer/SkillTreeContainer" instance=ExtResource("2_bw6ab")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Stats" type="Panel" parent="NavBar"]
 visible = false
