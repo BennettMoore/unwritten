@@ -21,10 +21,9 @@ const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 @export_range(1, 10, 1, "or_greater") var dungeon_depth = 2 ## How far the dungeon should spread from the origin
 @export_range(1,100,1) var spec_depth = 5 ## How deep the Dungeon Master should go to find space for a special room
 @export_range(1,100,1) var placement_attempts = 15 ## How many times the Dungeon Master should try placing a room before giving up
-@export_range(1,100,1) var timeout_counter = 5 ## Prevents infinite loops in level generation
+@export_range(1,100,1) var meta_timeout_counter = 5 ## Prevents infinite loops in level generation
 @export_flags("Boss Room", "Green Shop", "Blue Shop", "Red Shop") var starting_flags = 15 ## Since this is the root node, activate all special flags
 var ending_flags = 0 ## Keeps track of rooms placed
-
 
 @onready var north_rooms: Array[RoomData] = rooms.filter(has_north)
 @onready var east_rooms: Array[RoomData] = rooms.filter(has_east)
@@ -213,12 +212,12 @@ func valid_spec_room(old_door:int, spec_flags:int):
 
 ## Resets the level generator
 func reset_level():
-	if timeout_counter > 0:
-		var rooms = get_children()
-		for room in rooms:
+	if meta_timeout_counter > 0:
+		var current_rooms = get_children()
+		for room in current_rooms:
 			remove_child(room)
 		ending_flags = 0
-		timeout_counter -= 1
+		meta_timeout_counter -= 1
 		_ready()
 	else:
 		print("Error! Level generator timed out")

@@ -14,7 +14,7 @@ func _ready():
 	get_tree().paused = true
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu"):
 		get_tree().paused = true
 

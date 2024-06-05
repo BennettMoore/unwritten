@@ -4,10 +4,10 @@ extends Entity
 ## Patrols back and forth between two points
 ## @author: Bennett Moore 2024
 
-@export var limit = 5
-@export var damage = 10
-@export var damageType: Global.DAMAGE_TYPES = Global.DAMAGE_TYPES.SLASHING
-@export var endpoint: Marker2D
+@export var limit = 5 ## The minimum speed before the enemy turns around
+@export var damage = 10 ## How much damage the enemy does
+@export var damageType: Global.DAMAGE_TYPES = Global.DAMAGE_TYPES.SLASHING ## The damage type of this enemy's attacks
+@export var endpoint: Marker2D ## Where the enemy should patrol to/from
 @onready var animations = $AnimationPlayer
 var startPosition
 var endPosition

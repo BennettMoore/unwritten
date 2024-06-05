@@ -6,7 +6,7 @@ class_name Entity
 ## Handles boilerplate data and logic found in all living things
 ## @author: Bennett Moore 2024
 
-@export_range(0,1000) var speed = 300 ## How fast the entity will move (pixels/sec).
+@export_range(0,1000,50) var speed = 300 ## How fast the entity will move (pixels/sec).
 @export_range(10,1000) var max_hp = 100 ## The maximum health of the entity
 @export var hp = max_hp ## The current health of the entity
 @export_range(0,1000) var armor = 0 ## The damage reduction value of the entity
@@ -17,7 +17,7 @@ class_name Entity
 @onready var dodge_vector = Vector2.ZERO
 @onready var knockback_vector = Vector2.ZERO
 
-func _process(delta):
+func _process(_delta):
 	if not $HurtTimer.is_stopped():
 		var hurt_color = 1-($HurtTimer.get_time_left() / hurt_timer)
 		modulate = Color(1, hurt_color, hurt_color)

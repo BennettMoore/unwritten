@@ -6,9 +6,9 @@ class_name Player
 ## Handles all the boilerplate found across all character types
 ## @author: Bennett Moore 2024
 
-@export var melee_damage = 10.0 ## The "melee damage" stat of the player
-@export var magic_damage = 10.0 ## The "magic damage" stat of the player
-@export var ranged_damage = 10.0 ## The "ranged damage" stat of the player
+@export_range(0,100,1) var melee_damage = 10.0 ## The "melee damage" stat of the player
+@export_range(0,100,1) var magic_damage = 10.0 ## The "magic damage" stat of the player
+@export_range(0,100,1) var ranged_damage = 10.0 ## The "ranged damage" stat of the player
 @export_range(0,2,0.01) var crit_chance = 0.05 ## The percent chance of a critical hit occuring
 @export_range(0,10,0.1) var crit_damage = 2.0 ## The damage multiplier used when getting a crit
 

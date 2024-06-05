@@ -63,7 +63,7 @@ func _draw():
 	set_icon()
 
 ## Called when data is dragged from this node
-func _get_drag_data(at_position):
+func _get_drag_data(_at_position):
 	var preview_texture = TextureRect.new()
 	preview_texture.texture = texture
 	preview_texture.expand_mode = 1
@@ -82,11 +82,11 @@ func _get_drag_data(at_position):
 	return dragged_data
 
 ## Called to determine whether this node can have data dropped into it
-func _can_drop_data(at_position, data):
+func _can_drop_data(_at_position, _data):
 	return !has_skill
 
 ## Called when data is dropped into this node
-func _drop_data(at_position, data):
+func _drop_data(_at_position, data):
 	print("Data dropped!")
 	held_data = data
 	has_skill = true

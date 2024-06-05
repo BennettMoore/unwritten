@@ -36,7 +36,7 @@ func is_crit():
 	return PlayerData.crit_chance >= randf()
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if (Input.is_action_pressed("attack") or Input.is_action_pressed("alt_attack")) and $AttackDelay.is_stopped():
 		look_at(get_global_mouse_position())
 		# Create a new instance of the Attack scene.
