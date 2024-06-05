@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://duvkpmajc6yb7"]
+[gd_scene load_steps=9 format=3 uid="uid://duvkpmajc6yb7"]
 
 [ext_resource type="PackedScene" uid="uid://cyk1q3hg5wr3d" path="res://drop_point.tscn" id="1_g5qyk"]
+[ext_resource type="Script" path="res://skill_tree.gd" id="1_n53u8"]
 [ext_resource type="Script" path="res://skill_data.gd" id="2_q72mx"]
 [ext_resource type="Texture2D" uid="uid://bf3xiu76akpjh" path="res://art/skill_duck_1.png" id="3_1j577"]
 [ext_resource type="Texture2D" uid="uid://w18l51o2t73k" path="res://art/skill_duck_2.png" id="4_6jipr"]
@@ -25,6 +26,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+script = ExtResource("1_n53u8")
 
 [node name="DropPoint" parent="." node_paths=PackedStringArray("children") instance=ExtResource("1_g5qyk")]
 layout_mode = 0

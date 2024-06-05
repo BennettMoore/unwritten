@@ -22,7 +22,7 @@ corner_radius_top_right = 120
 corner_radius_bottom_right = 120
 corner_radius_bottom_left = 120
 
-[node name="DropPoint" type="TextureRect"]
+[node name="DropPoint" type="TextureRect" groups=["DropPoints"]]
 z_index = 2
 custom_minimum_size = Vector2(80, 80)
 anchors_preset = -1

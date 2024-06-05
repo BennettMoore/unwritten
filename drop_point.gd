@@ -40,6 +40,7 @@ func _ready():
 		print("Added Skill \""+held_data.skill_name+"\"!")
 		texture = held_data.skill_icons[held_data.skill_level]
 		has_skill = true
+	Global.drop_points[get_uuid()] = held_data
 
 ## Called whenever the drop point is drawn on the screen
 func _draw():
@@ -55,6 +56,10 @@ func _draw():
 				line.top_level = true
 				add_child(line)
 				lines[child.id] = line
+			if !has_skill or held_data.skill_level <= 0:
+				lines[child.id].set_modulate(Color(0.7, 0.7, 0.7, 1))
+			else:
+				lines[child.id].set_modulate(Color(1, 1, 1, 1))
 	set_icon()
 
 ## Called when data is dragged from this node
@@ -72,6 +77,8 @@ func _get_drag_data(at_position):
 	held_data = null
 	has_skill = false
 	texture = empty_texture
+	skills_changed.emit(in_tree, id, held_data)
+	Global.drop_points[get_uuid()] = null
 	return dragged_data
 
 ## Called to determine whether this node can have data dropped into it
@@ -85,6 +92,7 @@ func _drop_data(at_position, data):
 	has_skill = true
 	set_icon()
 	skills_changed.emit(in_tree, id, held_data)
+	Global.drop_points[get_uuid()] = held_data
 
 ## Sets the correct texture for this skill node
 func set_icon():
@@ -95,3 +103,15 @@ func set_icon():
 	else:
 		texture = held_data.skill_icons[held_data.skill_level]
 		has_skill = true
+
+## Manually updates the drop point's data
+func update():
+	if Global.drop_points.has(get_uuid()):
+		held_data = Global.drop_points[get_uuid()]
+	else:
+		held_data = null
+	set_icon()
+
+## Retrieve the unique identifier for this drop point
+func get_uuid():
+	return get_path().hash()
