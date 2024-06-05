@@ -11,6 +11,8 @@ class_name Player
 @export_range(0,100,1) var ranged_damage = 10.0 ## The "ranged damage" stat of the player
 @export_range(0,2,0.01) var crit_chance = 0.05 ## The percent chance of a critical hit occuring
 @export_range(0,10,0.1) var crit_damage = 2.0 ## The damage multiplier used when getting a crit
+@export var primary_attack_scene: PackedScene = load("res://swing_attack.tscn") ## The ranger's first weapon scene
+@export var secondary_attack_scene: PackedScene = load("res://stab_attack.tscn") ## The ranger's alternate weapon scene
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
@@ -34,6 +36,8 @@ func setStats():
 	PlayerData.hp = hp
 	PlayerData.crit_chance = crit_chance
 	PlayerData.crit_damage = crit_damage
+	if primary_attack_scene is PackedScene: PlayerData.primary_attack_scene = primary_attack_scene
+	if secondary_attack_scene is PackedScene: PlayerData.secondary_attack_scene = secondary_attack_scene
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func moveEntity(delta=0):

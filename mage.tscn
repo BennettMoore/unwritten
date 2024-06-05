@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b7yj26n8cakxr"]
 
-[ext_resource type="Script" path="res://mage.gd" id="1_5ld72"]
+[ext_resource type="Script" path="res://player.gd" id="1_t3nga"]
 [ext_resource type="Texture2D" uid="uid://buo0ars1oenk4" path="res://art/playerGrey_up1.png" id="2_kajpv"]
 [ext_resource type="PackedScene" uid="uid://d06okroiaygym" path="res://swing_attack.tscn" id="2_rqdvp"]
 [ext_resource type="Texture2D" uid="uid://k4l07tfdr0dr" path="res://art/playerGrey_up2.png" id="3_3s2al"]
@@ -45,16 +45,14 @@ height = 82.6667
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_mask = 3
-script = ExtResource("1_5ld72")
+script = ExtResource("1_t3nga")
+magic_damage = 20.0
 primary_attack_scene = ExtResource("2_rqdvp")
 secondary_attack_scene = ExtResource("3_hnfkb")
-melee_damage = 5.0
-magic_damage = 20.0
-ranged_damage = 5.0
-speed = 500
+speed = 400
 max_hp = 80
 hp = 80
-armor = 5
+is_enemy = false
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

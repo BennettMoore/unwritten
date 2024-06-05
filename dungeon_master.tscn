@@ -153,4 +153,3 @@ blue_shop = SubResource("Resource_xeodr")
 red_shop = SubResource("Resource_imj7j")
 micro_cap_rooms = Array[ExtResource("3_b1c4k")]([SubResource("Resource_w1ay0"), SubResource("Resource_hnxvu"), SubResource("Resource_phro7"), SubResource("Resource_kq6oa")])
 placement_attempts = 5
-timeout_counter = 10
