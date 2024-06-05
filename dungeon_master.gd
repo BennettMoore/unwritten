@@ -124,6 +124,7 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 	if timeout_counter <= 0:
 		push_error("Error! room_placer timed out")
 		print("ERRROR: room_placer timed out")
+		next_room.connect_to(DOOR_MATCH[old_door], old_room.get_door_pos(old_door), true, true)
 		match DOOR_MATCH[old_door]:
 				NORTH:
 					next_room_data = micro_cap_rooms[0]

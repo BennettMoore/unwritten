@@ -5,5 +5,6 @@ extends Node
 
 ## All possible damage types
 enum DAMAGE_TYPES {NONE, BLUDGEONING, PIERCING, SLASHING, FIRE, EARTH, WATER, LIGHTNING, ARCANE, TRUE}
+const SHOW_GHOSTS = false
 
 var drop_points: Dictionary ## Holds all drop point data, keyed by the node's hashed path data

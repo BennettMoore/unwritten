@@ -10,6 +10,7 @@ class_name Room
 @export var single_use = false ## Whether or not this room uses TileMap Layers
 enum {NORTH=1, EAST=2, SOUTH=4, WEST=8}
 const COMPASS = {1:"North", 2:"East", 4:"South", 8:"West"} ## Converts flags to readable text
+const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 @onready var valid_doors = door_dirs ## Which doors currently exist in the room
 @onready var open_doors = door_dirs ## What doors are currently "open", AKA are free to connect to
 @onready var tile_map:TileMap = $TileMap
@@ -83,31 +84,35 @@ func get_door_pos(door:int):
 	return null
 
 ## Moves the room to connect its door to a specific position
-func connect_to(door:int, pos:Vector2, ignore_collision = false):
+func connect_to(door:int, pos:Vector2, ignore_collision = false, is_ghost = false):
 	if !(door&door_dirs): # Room doesn't have this door
 		print("Error! "+COMPASS[door]+" door invalid!")
 		return false
-	elif !(door & open_doors) or !(door & valid_doors): # Door technically exists, but is unusable 
+	elif !is_ghost and (!(door & open_doors) or !(door & valid_doors)): # Door technically exists, but is unusable 
 		print("Error! "+COMPASS[door]+" door already taken!")
 		return false
 	else:
-		var door_dist = Vector2.ZERO
-		match(door):
-			NORTH:
-				door_dist = $NorthDoor.global_position - global_position
-			EAST:
-				door_dist = $EastDoor.global_position - global_position
-			SOUTH:
-				door_dist = $SouthDoor.global_position - global_position
-			WEST:
-				door_dist = $WestDoor.global_position - global_position
-			_:
-				print("Error! Could not find door at direction: "+str(door)+"!")
-				return false
-		var new_position = Transform2D(0, (pos - door_dist)) # Aligns new position to door's origin instead of room's origin
+		var door_dist = get_door_pos(door) + global_position
+		var new_position = Transform2D(0, global_position + (pos - get_door_pos(door))) # Aligns new position to door's origin instead of room's origin
 		var valid_move = !test_move(new_position, Vector2.ZERO, null, 0)
-		if valid_move or ignore_collision:
-			global_position = (pos - door_dist)
+		if is_ghost:
+			if !valid_move and Global.SHOW_GHOSTS:
+				print("$$GHOST CONNECT_TO$$")
+				print("\tglobal position = "+str(global_position))
+				print("\t"+COMPASS[door]+" door pos (here) = "+str(get_door_pos(door)))
+				print("\t"+COMPASS[DOOR_MATCH[door]]+" door pos (there) = "+str(pos))
+				var ghost_node = spawn_ghost(new_position.get_origin(), door)
+				print("\tFINAL "+COMPASS[door]+" door pos (here) = "+str(ghost_node.get_door_pos(door)))
+				print("\tFINAL global position = "+str(ghost_node.global_position))
+			return valid_move
+		elif valid_move or ignore_collision:
+			"""print("**CONNECT_TO**")
+			print("\tglobal position = "+str(global_position))
+			print("\t"+COMPASS[door]+" door pos (here) = "+str(get_door_pos(door)))
+			print("\t"+COMPASS[DOOR_MATCH[door]]+" door pos (there) = "+str(pos))"""
+			global_position = new_position.get_origin()
+			"""print("\tFINAL "+COMPASS[door]+" door pos (here) = "+str(get_door_pos(door)))
+			print("\tFINAL global position = "+str(global_position))"""
 			open_doors -= door
 			return true
 		else:
@@ -196,21 +201,67 @@ func shuffle_doors(req_doors: int, pref_door_count = -1):
 ## Decides whether a theoretical doorway has enough space near it to consider turning into a real door
 func test_doorway(door:int):
 	if door_dirs&door: # Ensure door exists and is not already in use
-		var center_dist = $Centroid.global_position - global_position
+		var pos: Vector2
 		var new_position: Transform2D
+		var ghost_color = Color(0.5, 0.5, 0.5, 0.5)
+		if door_dirs&DOOR_MATCH[door]:
+			pos = get_door_pos(DOOR_MATCH[door])
+		else:
+			pos = $Centroid.global_position
 		match(door):
 			NORTH:
-				new_position = Transform2D(0, ($NorthDoor.global_position - center_dist))
+				new_position = Transform2D(0, (pos - $NorthDoor.global_position + global_position))
 			EAST:
-				new_position = Transform2D(0, ($EastDoor.global_position - center_dist))
+				new_position = Transform2D(0, (pos - $EastDoor.global_position + global_position))
 			SOUTH:
-				new_position = Transform2D(0, ($SouthDoor.global_position - center_dist))
+				new_position = Transform2D(0, (pos - $SouthDoor.global_position + global_position))
 			WEST:
-				new_position = Transform2D(0, ($WestDoor.global_position - center_dist))
+				new_position = Transform2D(0, (pos - $WestDoor.global_position + global_position))
 			_:
 				print("Error! Could not find door at direction: "+str(door)+"!")
 				return false
-		return !test_move(new_position, Vector2.ZERO, null, 0)
+		# return !test_move(new_position, Vector2.ZERO, null, 0)
+		#var test = !test_move(new_position, Vector2.ZERO, null, 0)
+		var test = connect_to(DOOR_MATCH[door], get_door_pos(door), true, true)
+		
+		return test
 	else:
 		print("Error! Room does not have door in direction: "+str(door))
 		return false
+
+func spawn_ghost(pos:Vector2, door:int):
+	if Global.SHOW_GHOSTS:
+		var ghost_color = Color(0.5, 0.5, 0.5, 0.5)
+		match(door):
+			NORTH:
+				ghost_color = Color(1, 0.5, 0.5, 0.5)
+			EAST:
+				ghost_color = Color(0.5, 0.5, 1, 0.5)
+			SOUTH:
+				ghost_color = Color(0.5, 1, 0.5, 0.5)
+			WEST:
+				ghost_color = Color(1, 1, 0.5, 0.5)
+			_:
+				print("Error! Could not find valid ghost color for direction: "+str(door)+"!")
+		var ghost = duplicate()
+		ghost.collision_layer = 4
+		ghost.collision_mask = 4
+		ghost.set_modulate(ghost_color)
+		add_sibling(ghost)
+		ghost.global_position = pos
+		ghost.top_level = true
+		var door_line = Line2D.new()
+		door_line.add_point(ghost.get_door_pos(door))
+		door_line.add_point(get_door_pos(DOOR_MATCH[door]))
+		door_line.default_color = ghost_color
+		door_line.top_level = true
+		add_child(door_line)
+		var raw_line = Line2D.new()
+		raw_line.add_point(pos)
+		raw_line.add_point(global_position)
+		raw_line.default_color = Color(1, 1, 1, 0.3)
+		raw_line.top_level = true
+		raw_line.width = 2
+		add_child(raw_line)
+		print("Ghost placed")
+		return ghost
