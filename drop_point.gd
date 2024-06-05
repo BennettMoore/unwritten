@@ -15,9 +15,10 @@ var _skill_data = preload("res://skill_data.gd")
 @export var has_skill = false ## Whether the skill in this drop point is valid or not
 @export var in_tree = true ## Whether this drop point is in the actual skill tree or not
 @export_range(-1, 100, 1) var id = -1 ## The unique ID of this node in the tree, or -1 if not in tree
-@export var children:Array[DropPoint]
+@export var children:Array[DropPoint] ## This node's children
 var parents:Array[DropPoint]
 var lines:Dictionary = {}
+
 func _ready():
 	# Find all your children and tell them who their parent(s) are
 	if children != null and !children.is_empty():
@@ -39,21 +40,24 @@ func _ready():
 		print("Added Skill \""+held_data.skill_name+"\"!")
 		texture = held_data.skill_icons[held_data.skill_level]
 		has_skill = true
-	
+
+## Called whenever the drop point is drawn on the screen
 func _draw():
-	if children != null and !children.is_empty() and lines.size() != children.size():
+	if children != null and !children.is_empty():
 		for child in children:
-			if lines.find_key(child):
-				continue
+			if lines.has(child.id):
+				lines[child.id].set_point_position(0, global_position + Vector2(size.x/2, size.y/2))
+				lines[child.id].set_point_position(1, child.global_position + Vector2(child.size.x/2, child.size.y/2))
 			else:
 				var line = Line2D.new()
 				line.add_point(global_position + Vector2(size.x/2, size.y/2))
 				line.add_point(child.global_position + Vector2(child.size.x/2, child.size.y/2))
 				line.top_level = true
 				add_child(line)
-				lines[child] = line
+				lines[child.id] = line
 	set_icon()
 
+## Called when data is dragged from this node
 func _get_drag_data(at_position):
 	var preview_texture = TextureRect.new()
 	preview_texture.texture = texture
@@ -70,9 +74,11 @@ func _get_drag_data(at_position):
 	texture = empty_texture
 	return dragged_data
 
+## Called to determine whether this node can have data dropped into it
 func _can_drop_data(at_position, data):
 	return !has_skill
-	
+
+## Called when data is dropped into this node
 func _drop_data(at_position, data):
 	print("Data dropped!")
 	held_data = data
@@ -80,6 +86,7 @@ func _drop_data(at_position, data):
 	set_icon()
 	skills_changed.emit(in_tree, id, held_data)
 
+## Sets the correct texture for this skill node
 func set_icon():
 	if held_data == null or held_data.skill_level > held_data.skill_icons.size():
 		if held_data != null: push_error("Error! Skill \""+held_data.skill_name+"\" does not have a valid icon at level "+str(held_data.skill_level))

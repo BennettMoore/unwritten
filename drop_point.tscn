@@ -45,7 +45,7 @@ empty_texture = ExtResource("1_ovowk")
 held_data = SubResource("Resource_dd08v")
 
 [node name="Panel" type="Panel" parent="."]
-modulate = Color(0.0451491, 0.645061, 0.811609, 1)
+modulate = Color(3.46541e-06, 0.721605, 0.907038, 1)
 z_index = -1
 layout_mode = 1
 anchors_preset = -1

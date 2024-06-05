@@ -21,7 +21,10 @@ const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 @export_range(1, 10, 1, "or_greater") var dungeon_depth = 2 ## How far the dungeon should spread from the origin
 @export_range(1,100,1) var spec_depth = 5 ## How deep the Dungeon Master should go to find space for a special room
 @export_range(1,100,1) var placement_attempts = 15 ## How many times the Dungeon Master should try placing a room before giving up
+@export_range(1,100,1) var timeout_counter = 5 ## Prevents infinite loops in level generation
 @export_flags("Boss Room", "Green Shop", "Blue Shop", "Red Shop") var starting_flags = 15 ## Since this is the root node, activate all special flags
+var ending_flags = 0 ## Keeps track of rooms placed
+
 
 @onready var north_rooms: Array[RoomData] = rooms.filter(has_north)
 @onready var east_rooms: Array[RoomData] = rooms.filter(has_east)
@@ -44,6 +47,10 @@ func _ready():
 		print("Closed "+COMPASS[starting_door]+" door")
 		print("Inheritance: "+flag_translator(start_inheritance[n]))
 		room_placer(start, starting_door, dungeon_depth, spec_depth, room_rand, start_inheritance[n])
+	# If not every special room was placed, try again
+	if starting_flags != ending_flags:
+		print("\tFailed ending flags: "+str(ending_flags))
+		reset_level()
 
 ## Recursive function which places rooms according to a modified Depth-first Search algorithm
 func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit: int, room_rand:RandomNumberGenerator, spec_flags = 0, failed_spec_placements = 0):
@@ -100,6 +107,7 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 					pass
 		next_room = next_room_data.room_scene.instantiate()
 		add_child(next_room)
+		ending_flags |= spec_room_type
 		valid_move = next_room.connect_to(DOOR_MATCH[old_door], old_room.get_door_pos(old_door))
 		if !valid_move:
 			spec_room_type = 0
@@ -115,8 +123,8 @@ func room_placer(old_room:Room, old_door:int, depth_limit:int, spec_depth_limit:
 		else:
 			next_room.shuffle_doors(DOOR_MATCH[old_door], 1) # Turns room into a cap
 	if timeout_counter <= 0:
-		push_error("Error! Timed out")
-		print("ERRROR: room_placer Timed out")
+		push_error("Error! room_placer timed out")
+		print("ERRROR: room_placer timed out")
 		match DOOR_MATCH[old_door]:
 				NORTH:
 					next_room_data = micro_cap_rooms[0]
@@ -152,7 +160,8 @@ func has_south(room:RoomData):
 	
 func has_west(room:RoomData):
 	return room.door_dirs & WEST
-	
+
+## Internal function that translates special flags into human-readable strings
 func flag_translator(spec_flags):
 	var flag_names = ""
 	if spec_flags&SPEC_FLAGS.END:
@@ -164,6 +173,7 @@ func flag_translator(spec_flags):
 	if spec_flags&SPEC_FLAGS.RED:
 		flag_names+="Red shop, "
 	return flag_names
+	
 ## Plans how special flags will be inherited by the children of this room
 func plan_inheritance(open_doors:int, spec_flags:int):
 	if open_doors == 0: return []
@@ -200,3 +210,15 @@ func valid_spec_room(old_door:int, spec_flags:int):
 		return SPEC_FLAGS.RED
 	else:
 		return 0
+
+## Resets the level generator
+func reset_level():
+	if timeout_counter > 0:
+		var rooms = get_children()
+		for room in rooms:
+			remove_child(room)
+		ending_flags = 0
+		timeout_counter -= 1
+		_ready()
+	else:
+		print("Error! Level generator timed out")
