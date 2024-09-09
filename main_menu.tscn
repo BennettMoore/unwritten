@@ -32,8 +32,8 @@ theme_override_constants/separation = 20
 [node name="ItemList" type="ItemList" parent="MenuContainer/MenuSplitter/CharacterSelect"]
 custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
-theme_override_constants/v_separation = 10
 theme_override_constants/icon_margin = 20
+theme_override_constants/v_separation = 10
 auto_height = true
 same_column_width = true
 fixed_icon_size = Vector2i(80, 100)

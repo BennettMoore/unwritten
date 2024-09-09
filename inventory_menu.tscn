@@ -39,10 +39,12 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
+current_tab = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Skills" type="Panel" parent="NavBar"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NavBar/Skills"]
 layout_mode = 1
@@ -94,6 +96,7 @@ mouse_filter = 1
 [node name="Stats" type="Panel" parent="NavBar"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="NavBar/Stats"]
 layout_mode = 1
@@ -150,6 +153,7 @@ icon = ExtResource("8_ol7vi")
 [node name="Map" type="Panel" parent="NavBar"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="ExitButton" type="Button" parent="."]
 anchors_preset = -1

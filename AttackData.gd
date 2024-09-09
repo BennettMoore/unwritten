@@ -17,4 +17,3 @@ func _init(_damage = 0, _knockback = 0, _damage_type = Global.DAMAGE_TYPES.NONE,
 	damage_type = _damage_type
 	is_crit = _is_crit
 	is_super_crit = _is_super_crit
-
