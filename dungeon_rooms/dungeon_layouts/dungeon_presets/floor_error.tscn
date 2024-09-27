@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4 uid="uid://wn13femyhas0"]
+
+[ext_resource type="TileSet" uid="uid://coh7rvofoycta" path="res://dungeon_rooms/dungeon_tileset.tres" id="1_nw24b"]
+
+[node name="FloorError" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(1, 0.217345, 0.349631, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAGAAAAAAABAAEAAAAGAAcAAAAAAAEAAAAAAAcAAAAEAAEAAAAAAAEAAAAEAAAAAAAAAAAAAAAFAAAAAAAGAAAAAAAFAAEAAAAGAAYAAAAGAAAAAAAAAAAAAAAHAAAAAAAGAAAAAAAHAAEAAAAGAAcAAAAGAAEAAAAAAAcAAAADAAEAAAAHAAIAAAACAAEAAAAHAAMAAAA=")
+tile_set = ExtResource("1_nw24b")
+collision_enabled = false

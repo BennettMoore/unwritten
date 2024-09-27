@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwcdshtbw22yl"]
+[gd_scene load_steps=23 format=3 uid="uid://dwcdshtbw22yl"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f725f"]
 [ext_resource type="PackedScene" uid="uid://c5y3f34fqo353" path="res://inventory_menu.tscn" id="3_10c67"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ddp50lp1vtj6a" path="res://main_menu.tscn" id="10_366iv"]
 [ext_resource type="Texture2D" uid="uid://dxxi2vys4lijh" path="res://art/gear_icon.png" id="10_icf2j"]
 [ext_resource type="PackedScene" uid="uid://b7yj26n8cakxr" path="res://mage.tscn" id="13_y60x1"]
+[ext_resource type="PackedScene" uid="uid://drwlv37jxvrao" path="res://dungeon_rooms/dungeon_layouts/dungeon_layout_1.tscn" id="18_24lbr"]
 
 [sub_resource type="Resource" id="Resource_l4mnc"]
 script = ExtResource("4_qs3lx")
@@ -58,10 +59,10 @@ visible = false
 [node name="PauseMenu" parent="." instance=ExtResource("8_xmq5q")]
 visible = false
 
-[node name="TestDungeon" parent="." instance_placeholder="res://dungeon_rooms/test_dungeon.tscn"]
+[node name="DungeonLayout1" parent="." instance=ExtResource("18_24lbr")]
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(568, 322)
+position = Vector2(-128, 0)
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -80,7 +81,7 @@ offset_bottom = 51.0
 script = ExtResource("4_p8887")
 
 [node name="Friend" parent="." instance=ExtResource("6_2uyst")]
-position = Vector2(-472, 296)
+position = Vector2(-384, -256)
 is_enemy = true
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("endpoint") instance=ExtResource("3_w4utp")]
@@ -88,7 +89,7 @@ position = Vector2(320, 192)
 endpoint = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="Enemy"]
-position = Vector2(384, 128)
+position = Vector2(-704, 320)
 
 [connection signal="start_game" from="main_menu" to="." method="_on_main_menu_start_game"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

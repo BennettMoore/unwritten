@@ -11,6 +11,7 @@ enum {NORTH=1, EAST=2, SOUTH=4, WEST=8}
 const COMPASS = {1:"North", 2:"East", 4:"South", 8:"West"}
 const DOOR_MATCH = {1:4, 2:8, 4:1, 8:2}
 
+@export var enabled: bool ## Whether the dungeon master should be enabled or not
 @export var rooms: Array[RoomData] ## All possible room options
 @export var start_room: RoomData ## The starting room of the dungeon
 @export var end_room: RoomData ## The ending room of the dungeon
@@ -32,12 +33,15 @@ var ending_flags = 0 ## Keeps track of rooms placed
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	if not enabled:
+		print("[Dungeon Master]: ZZzzzzz....")
+		return
 	var start = start_room.room_scene.instantiate()
 	add_child(start)
 	start.global_position = Vector2.ZERO
 	if !(start is Room) or start.has_open_doors() == 0:
 		print("Error! Starting room is not a real room!")
-		pass
+		return
 	var starting_door: int
 	var room_rand = RandomNumberGenerator.new()
 	var start_inheritance = plan_inheritance(start.has_open_doors(), starting_flags)
