@@ -1,10 +1,9 @@
-extends CharacterBody2D
-
-class_name Entity
-## Parents of all game entities
+## Parent of all game entities
 ##
 ## Handles boilerplate data and logic found in all living things
 ## @author: Bennett Moore 2024
+class_name Entity
+extends CharacterBody2D
 
 @export_range(0,1000,50) var speed = 300 ## How fast the entity will move (pixels/sec).
 @export_range(10,1000) var max_hp = 100 ## The maximum health of the entity

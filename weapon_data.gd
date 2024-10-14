@@ -1,9 +1,8 @@
-extends Resource
-
-class_name WeaponData
 ## Resource that contains all weapon data
 ##
 ## @author: Bennett Moore 2024
+class_name WeaponData
+extends Resource
 
 @export var weapon_scene: PackedScene ## The weapon's scene
 @export var weapon_icon: CompressedTexture2D ## The weapon's UI icon

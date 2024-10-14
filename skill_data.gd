@@ -1,9 +1,8 @@
-extends Resource
-
-class_name SkillData
 ## Resource that contains all skill data
 ##
 ## @author: Bennett Moore 2024
+class_name SkillData
+extends Resource
 
 @export var skill_icons: Array[CompressedTexture2D] ## The skill's possible icons
 @export var skill_name: String ## The name of the skill

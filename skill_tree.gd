@@ -1,9 +1,8 @@
-extends Control
-
-class_name SkillTree
 ## Brain that controls all skill tree logic
 ##
 ## @author: Bennett Moore 2024
+class_name SkillTree
+extends Control
 
 @onready var drop_points = get_children()
 

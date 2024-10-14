@@ -1,29 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://drwlv37jxvrao"]
+[gd_scene load_steps=3 format=4 uid="uid://drwlv37jxvrao"]
 
 [ext_resource type="TileSet" uid="uid://coh7rvofoycta" path="res://dungeon_rooms/dungeon_tileset.tres" id="1_6gjen"]
 [ext_resource type="Script" path="res://dungeon_rooms/dungeon_layouts/room_marker.gd" id="2_8nxun"]
-[ext_resource type="Script" path="res://preset_data.gd" id="3_0wj7u"]
-[ext_resource type="PackedScene" uid="uid://b84acboocv6ti" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/7x7_square_1.tscn" id="4_nauwd"]
-[ext_resource type="PackedScene" uid="uid://cgypjk8bcokj3" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/7x7_square_2.tscn" id="5_hl0yx"]
-[ext_resource type="PackedScene" uid="uid://58pd6o1pcbg1" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/7x7_square_red_shop.tscn" id="6_1i8p3"]
-
-[sub_resource type="Resource" id="Resource_ebl5y"]
-script = ExtResource("3_0wj7u")
-preset_scene = ExtResource("4_nauwd")
-normal_flags = 0
-special_flags = 0
-
-[sub_resource type="Resource" id="Resource_ou3gt"]
-script = ExtResource("3_0wj7u")
-preset_scene = ExtResource("5_hl0yx")
-normal_flags = 0
-special_flags = 0
-
-[sub_resource type="Resource" id="Resource_ryr8q"]
-script = ExtResource("3_0wj7u")
-preset_scene = ExtResource("6_1i8p3")
-normal_flags = 0
-special_flags = 2
 
 [node name="DungeonLayout1" type="Node2D"]
 
@@ -38,7 +16,7 @@ tile_set = ExtResource("1_6gjen")
 position = Vector2(-512, -2688)
 scale = Vector2(596125, -750911)
 script = ExtResource("2_8nxun")
-presets = Array[ExtResource("3_0wj7u")]([SubResource("Resource_ebl5y"), SubResource("Resource_ou3gt"), SubResource("Resource_ryr8q")])
+preset_dir = Array[String](["res://dungeon_rooms/dungeon_layouts/dungeon_presets/7x7"])
 x_len = 7
 y_len = 7
 

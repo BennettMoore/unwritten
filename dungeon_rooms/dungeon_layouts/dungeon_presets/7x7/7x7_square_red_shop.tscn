@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=4 uid="uid://58pd6o1pcbg1"]
 
-[ext_resource type="TileSet" uid="uid://coh7rvofoycta" path="res://dungeon_rooms/dungeon_tileset.tres" id="1_ksgcj"]
-[ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="2_oflis"]
+[ext_resource type="TileSet" uid="uid://coh7rvofoycta" path="res://dungeon_rooms/dungeon_tileset.tres" id="1_st0id"]
+[ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="2_s8kef"]
 
 [node name="7x7_square_red_shop" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAQAAAABAAAAAAABAAUAAAACAAAAAAAEAAMAAAADAAAAAAAFAAMAAAAEAAAAAAABAAUAAAAFAAAAAAACAAYAAAAGAAAAAAADAAEAAAAAAAYAAAABAAEAAFAAAAUAAAABAAUAADAAAAQAAAACAAUAAFABAAQAAAACAAIAADABAAMAAAACAAQAAFABAAIAAAABAAQAAFAAAAIAAAACAAUAADAAAAEAAAABAAUAADAAAAMAAAACAAYAAFABAAEAAAABAAYAAAACAAEAAAAFAAMAAFADAAEAAAACAAUAAFAEAAEAAAADAAIAADAFAAEAAAABAAYAAAAGAAEAAAADAAEAADAGAAIAAAABAAEAADAFAAIAAAACAAYAADAEAAIAAAACAAIAADADAAIAAAACAAIAAFACAAIAAAABAAUAAFACAAMAAAACAAUAADADAAMAAAACAAUAADAEAAMAAAABAAUAADAFAAMAAAACAAEAADAGAAMAAAADAAEAADAGAAQAAAADAAMAAGAFAAQAAAABAAEAAGAEAAQAAAABAAEAAFADAAQAAAABAAEAAFACAAQAAAABAAEAADABAAUAAAABAAYAAAACAAUAAAACAAUAAFADAAUAAAADAAEAAFAEAAUAAAACAAUAAGAFAAUAAAABAAYAAAAGAAUAAAAFAAMAAGAGAAYAAAACAAQAAGAFAAYAAAAEAAMAAGAEAAYAAAABAAMAADADAAYAAAAEAAMAAFACAAYAAAAEAAMAAFABAAYAAAADAAMAAFA=")
-tile_set = ExtResource("1_ksgcj")
+tile_set = ExtResource("1_st0id")
 
-[node name="Friend" parent="." instance=ExtResource("2_oflis")]
+[node name="Friend" parent="." instance=ExtResource("2_s8kef")]
 modulate = Color(0.896464, 0, 0.31299, 1)
-position = Vector2(112, 96)
-scale = Vector2(0.4, 0.4)
+position = Vector2(448, 448)

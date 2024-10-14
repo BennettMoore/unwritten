@@ -13,8 +13,8 @@ var magic_damage = 10.0 ## The "magic damage" stat of the player
 var ranged_damage = 10.0 ## The "ranged damage" stat of the player
 var crit_chance = 0.05 ## The percent chance of a critical hit occuring
 var crit_damage = 2.0 ## The damage multiplier used when getting a crit
-var primary_attack_scene: PackedScene = load("res://swing_attack.tscn") ## The player's first weapon scene
-var secondary_attack_scene: PackedScene = load("res://stab_attack.tscn") ## The player's alternate weapon scene
+var primary_attack_scene: PackedScene = preload("res://swing_attack.tscn") ## The player's first weapon scene
+var secondary_attack_scene: PackedScene = preload("res://stab_attack.tscn") ## The player's alternate weapon scene
 var damage_flat = 0 ## The player's flat damage bonus 
 var damage_mul = 1.0 ## The player's damage multiplier
 

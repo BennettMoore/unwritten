@@ -1,9 +1,8 @@
-extends Resource
-
-class_name RoomData
 ## Stores basic room data
 ##
 ## @author: Bennett Moore 2024
+class_name RoomData
+extends Resource
 
 @export var room_scene:PackedScene ## The room scene
 @export_flags("North", "East", "South", "West") var door_dirs = 0 ## Which doors the room has

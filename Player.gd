@@ -1,10 +1,9 @@
-extends Entity
-
-class_name Player
 ## An abstract class for all player characters
 ##
 ## Handles all the boilerplate found across all character types
 ## @author: Bennett Moore 2024
+class_name Player
+extends Entity
 
 @export_range(0,100,1) var melee_damage = 10.0 ## The "melee damage" stat of the player
 @export_range(0,100,1) var magic_damage = 10.0 ## The "magic damage" stat of the player

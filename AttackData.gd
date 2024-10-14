@@ -1,9 +1,8 @@
-extends Resource
-
-class_name AttackData
 ## Resource that contains all attack data
 ##
 ## @author: Bennett Moore 2024
+class_name AttackData
+extends Resource
 
 var damage: float ## The damage being dealt
 var knockback: float ## How far the attack should knock the target back

@@ -1,9 +1,8 @@
-extends Resource
-
-class_name CharacterData
 ## Resource that contains all character data
 ##
 ## @author: Bennett Moore 2024
+class_name CharacterData
+extends Resource
 
 
 @export var character_scene: PackedScene ## The character's scene

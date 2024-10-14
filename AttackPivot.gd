@@ -1,10 +1,9 @@
-extends Node2D
-
-class_name AttackPivot
 ## Handles basic player attack functionality
 ##
 ## Acts as both a spawner, point of reference, and brain for all player attacks
 ## @author: Bennett Moore 2024
+class_name AttackPivot
+extends Node2D
 
 @export var attack_delay = 1.0 ## How long the player should have to wait before attacking again
 @onready var parent: Player = get_parent()

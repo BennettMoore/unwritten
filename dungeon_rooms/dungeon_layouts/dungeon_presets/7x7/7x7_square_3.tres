@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PresetData" load_steps=3 format=3 uid="uid://k6xnm2idbxpi"]
+
+[ext_resource type="PackedScene" uid="uid://58pd6o1pcbg1" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/7x7/7x7_square_red_shop.tscn" id="1_pad8c"]
+[ext_resource type="Script" path="res://floor_data.gd" id="2_wvy8e"]
+
+[resource]
+script = ExtResource("2_wvy8e")
+preset_scene = ExtResource("1_pad8c")
+normal_flags = 0
+special_flags = 2
+x_len = 7
+y_len = 7

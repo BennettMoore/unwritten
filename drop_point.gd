@@ -1,10 +1,9 @@
-extends TextureRect
-
-class_name DropPoint
 ## A drop point for a given skill
 ##
 ## Handles drag/drop logic and skill data transfer
 ## @author: Bennett Moore 2024
+class_name DropPoint
+extends TextureRect
 
 signal skills_changed(in_tree:bool, id:int, data:SkillData)
 

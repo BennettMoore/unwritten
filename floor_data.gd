@@ -1,9 +1,11 @@
-extends Resource
-
-class_name PresetData
 ## Stores basic room preset data
 ##
 ## @author: Bennett Moore 2024
+class_name PresetData
+extends Resource
+
+
+
 
 @export var preset_scene:PackedScene ## The preset scene
 @export_flags("Enemies", "Loot", "Trapped", "Puzzle") var normal_flags = 0 ## General room characteristics

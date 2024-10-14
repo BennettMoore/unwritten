@@ -1,10 +1,9 @@
-extends StaticBody2D
-
-class_name Room
 ## Handles basic room functionality
 ##
 ## Stores which doors a room has, which are open, and allows the Dungeon Master to connect rooms together
 ## @author: Bennett Moore 2024
+class_name Room
+extends StaticBody2D
 
 @export_flags("North", "East", "South", "West") var door_dirs = 0 ## Which doors the room actually has
 @export var single_use = false ## Whether or not this room uses TileMap Layers
