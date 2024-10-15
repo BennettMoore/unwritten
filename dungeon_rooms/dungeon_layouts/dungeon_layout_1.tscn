@@ -30,17 +30,30 @@ y_len = 11
 [node name="Room3" type="Marker2D" parent="RoomMarkers"]
 position = Vector2(1408, -1920)
 script = ExtResource("2_8nxun")
+preset_dir = Array[String](["res://dungeon_rooms/dungeon_layouts/dungeon_presets/12x5"])
 x_len = 12
 y_len = 5
 
 [node name="Room4" type="Marker2D" parent="RoomMarkers"]
 position = Vector2(-256, -1664)
+script = ExtResource("2_8nxun")
+preset_dir = Array[String](["res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x9"])
+x_len = 3
+y_len = 9
 
 [node name="Room5" type="Marker2D" parent="RoomMarkers"]
 position = Vector2(-3584, -1152)
+script = ExtResource("2_8nxun")
+preset_dir = Array[String](["res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x12+12x3TL", "res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x9"])
+x_len = 12
+y_len = 12
 
 [node name="Room6" type="Marker2D" parent="RoomMarkers"]
 position = Vector2(2304, -1152)
+script = ExtResource("2_8nxun")
+preset_dir = Array[String](["res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x18", "res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x9"])
+x_len = 3
+y_len = 18
 
 [node name="Room7" type="Marker2D" parent="RoomMarkers"]
 position = Vector2(896, -640)

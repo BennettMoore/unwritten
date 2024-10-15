@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=4 uid="uid://qtoo007sxpxu"]
+
+[ext_resource type="TileSet" uid="uid://coh7rvofoycta" path="res://dungeon_rooms/dungeon_tileset.tres" id="1_y55ux"]
+[ext_resource type="PackedScene" uid="uid://c33uvo1slx8sg" path="res://friend.tscn" id="2_6lmdx"]
+
+[node name="3x9_red_shop" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAYAAFABAAAAAAABAAUAAAACAAAAAAADAAIAAAAAAAYAAAACAAMAAAAAAAUAAAAFAAMAAAAAAAQAAAAFAAMAAAABAAQAAAACAAUAAAABAAMAAAACAAQAAGAAAAIAAAACAAMAAAAAAAEAAAABAAYAAAAAAAMAAAAFAAMAAAABAAEAAAAEAAMAAAACAAMAAAADAAMAAAACAAYAAAACAAIAAAABAAYAAAAEAAMAAAACAAEAAAABAAEAAAABAAIAAAACAAUAAGACAAIAAAAFAAMAAAABAAUAAAABAAEAAAACAAUAAAADAAMAAAACAAQAAAABAAMAAAAAAAcAAAABAAYAAAAAAAgAAAAEAAMAAGACAAcAAAACAAIAAAABAAcAAAACAAIAAAABAAgAAAADAAMAAFACAAgAAAADAAMAAAA=")
+tile_set = ExtResource("1_y55ux")
+
+[node name="Friend" parent="." instance=ExtResource("2_6lmdx")]
+modulate = Color(0.898299, 0, 0.20757, 1)
+position = Vector2(64, 576)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PresetData" load_steps=3 format=3 uid="uid://oai63j065btp"]
 
 [ext_resource type="PackedScene" uid="uid://b5ih08rnkqy1g" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/6x11+10x3TL/6x11+10x3TL_start.tscn" id="1_8e3yo"]
-[ext_resource type="Script" path="res://floor_data.gd" id="2_0r1q5"]
+[ext_resource type="Script" path="res://preset_data.gd" id="2_0r1q5"]
 
 [resource]
 script = ExtResource("2_0r1q5")

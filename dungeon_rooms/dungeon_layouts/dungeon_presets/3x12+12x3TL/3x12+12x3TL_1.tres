@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PresetData" load_steps=3 format=3 uid="uid://jeqpoforoykc"]
+
+[ext_resource type="PackedScene" uid="uid://db7e4gt4beodh" path="res://dungeon_rooms/dungeon_layouts/dungeon_presets/3x12+12x3TL/3x12+12x3TL_1.tscn" id="1_e521c"]
+[ext_resource type="Script" path="res://preset_data.gd" id="2_mx0lu"]
+
+[resource]
+script = ExtResource("2_mx0lu")
+preset_scene = ExtResource("1_e521c")
+normal_flags = 0
+special_flags = 0
+x_len = 12
+y_len = 12
